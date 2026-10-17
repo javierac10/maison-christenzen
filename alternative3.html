@@ -42,7 +42,7 @@
             font-family: 'Playfair Display', serif;
         }
         /* Smooth Crossfade transitions for full width carousels */
-        .carousel-slide {
+        .carousel-slide, .carousel-video-slide {
             transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         /* Hide scrollbars for clean vertical thumbnail navigation */
@@ -581,9 +581,9 @@
 
         <div id="videos-carousel" class="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-white border-y border-platinum/30 shadow-sm">
             <!-- Video Slide 1 -->
-            <div class="carousel-slide absolute inset-0 w-full h-full opacity-100 z-10 flex flex-col lg:flex-row items-center">
-                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative bg-black flex items-center justify-center">
-                    <video preload="none" loading="lazy" controls loop muted class="w-full h-full object-cover">
+            <div class="carousel-video-slide absolute inset-0 w-full h-full opacity-100 z-10 flex flex-col lg:flex-row items-center">
+                <div class="video-slide w-full lg:w-3/5 h-1/2 lg:h-full relative bg-black flex items-center justify-center">
+                    <video preload="metadata" autoplay loop muted playsinline controls class="w-full h-full object-cover rounded-sm shadow-2xl">
                         <source src="./videos/cris-beige.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -597,9 +597,9 @@
             </div>
 
             <!-- Video Slide 2 -->
-            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
-                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative bg-black flex items-center justify-center">
-                    <video preload="none" loading="lazy" controls loop muted class="w-full h-full object-cover">
+            <div class="carousel-video-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="video-slide w-full lg:w-3/5 h-1/2 lg:h-full relative bg-black flex items-center justify-center">
+                    <video preload="metadata" autoplay loop muted playsinline controls class="w-full h-full object-cover rounded-sm shadow-2xl">
                         <source src="./videos/cris-clip5.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -613,9 +613,9 @@
             </div>
 
             <!-- Video Slide 3 -->
-            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
-                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative bg-black flex items-center justify-center">
-                    <video preload="none" loading="lazy" controls loop muted class="w-full h-full object-cover">
+            <div class="carousel-video-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="video-slide w-full lg:w-3/5 h-1/2 lg:h-full relative bg-black flex items-center justify-center">
+                    <video preload="metadata" autoplay loop muted playsinline controls class="w-full h-full object-cover rounded-sm shadow-2xl">
                         <source src="./videos/cris-clip.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -630,19 +630,19 @@
 
             <!-- Controls -->
             <div class="absolute bottom-8 right-8 z-20 flex items-center space-x-3">
-                <button class="carousel-prev w-12 h-12 bg-white/90 border border-platinum text-midnight hover:border-champagne hover:text-champagne flex items-center justify-center transition-colors shadow-sm" aria-label="Previous Slide">
+                <button onclick="changeVideoSlide(-1)" class="w-12 h-12 bg-white/90 border border-platinum text-midnight hover:border-champagne hover:text-champagne flex items-center justify-center transition-colors shadow-sm" aria-label="Previous Slide">
                     <i class="fa-solid fa-arrow-left"></i>
                 </button>
-                <button class="carousel-next w-12 h-12 bg-white/90 border border-platinum text-midnight hover:border-champagne hover:text-champagne flex items-center justify-center transition-colors shadow-sm" aria-label="Next Slide">
+                <button onclick="changeVideoSlide(1)" class="w-12 h-12 bg-white/90 border border-platinum text-midnight hover:border-champagne hover:text-champagne flex items-center justify-center transition-colors shadow-sm" aria-label="Next Slide">
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
 
             <!-- Indicators -->
             <div class="absolute bottom-8 left-8 z-20 hidden sm:flex items-center space-x-2">
-                <button class="carousel-dot h-1.5 w-8 bg-champagne rounded-full transition-all" data-index="0"></button>
-                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="1"></button>
-                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="2"></button>
+                <button onclick="showVideoSlide(0)" class="video-dot carousel-dot h-1.5 w-8 bg-champagne rounded-full transition-all" data-index="0"></button>
+                <button onclick="showVideoSlide(1)" class="video-dot carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="1"></button>
+                <button onclick="showVideoSlide(2)" class="video-dot carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="2"></button>
             </div>
         </div>
     </section>
@@ -1094,6 +1094,70 @@
             buttonEl.classList.add('border-2', 'border-midnight', 'bg-midnight', 'text-ivory');
         }
 
+
+
+        let currentVideoSlide = 0;
+
+        function showVideoSlide(index) {
+            const slides = document.querySelectorAll('.carousel-video-slide');
+            const dots = document.querySelectorAll('.video-dot');
+            
+            console.log("Requested video slide index:", index);
+            console.log("Current video slide before change:", currentVideoSlide);
+            console.log("Total number of video slides:", slides.length);
+            console.log("Dots elements found:", dots.length);
+
+            if (slides.length === 0) return;
+            
+            if (index >= slides.length) currentVideoSlide = 0;
+            else if (index < 0) currentVideoSlide = slides.length - 1;
+            else currentVideoSlide = index;
+            
+            slides.forEach((slide, i) => {
+                const video = slide.querySelector('video');
+                
+                if (i === currentVideoSlide) {
+                // Muestra la diapositiva activa
+                slide.classList.remove('opacity-0', 'pointer-events-none');
+                slide.classList.add('opacity-100', 'pointer-events-auto');
+                
+                // Reinicia y reproduce el video activo
+                if (video) {
+                    video.currentTime = 0; // Vuelve al inicio
+                    video.play().catch(error => {
+                    console.log("Autoplay prevenido por el navegador:", error);
+                    });
+                }
+                } else {
+                // Oculta las diapositivas inactivas
+                slide.classList.remove('opacity-100', 'pointer-events-auto');
+                slide.classList.add('opacity-0', 'pointer-events-none');
+                
+                // Pausa los videos que no están visibles
+                if (video) {
+                    video.pause();
+                }
+                }
+            });
+
+            // Actualiza los indicadores visuales (dots)
+            dots.forEach((dot, i) => {
+                if (i === currentVideoSlide) {
+                dot.classList.remove('bg-gray-300', 'w-2');
+                dot.classList.add('bg-[#101B2B]', 'w-8');
+                } else {
+                dot.classList.remove('bg-[#101B2B]', 'w-8');
+                dot.classList.add('bg-gray-300', 'w-2');
+                }
+            });
+            }
+
+        function changeVideoSlide(direction) {
+            const whereToGo = currentVideoSlide + direction;
+            console.log("Changing video slide to:", whereToGo);
+            showVideoSlide(whereToGo);
+        }
+
         // Initialize All Systems on Load
         document.addEventListener('DOMContentLoaded', () => {
             renderPDP(activePDPProduct);
@@ -1103,6 +1167,7 @@
             createCrossfadeCarousel('coats-carousel');
             createCrossfadeCarousel('buttons-carousel');
             createCrossfadeCarousel('videos-carousel');
+            showVideoSlide(0);
         });
     </script>
 </body>
