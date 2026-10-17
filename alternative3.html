@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison Christenzen | Haute Couture & Luxury Menswear</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        midnight: '#101B2B',
+                        ivory: '#F4F0E8',
+                        alabaster: '#FAF8F5',
+                        platinum: '#B8BEC8',
+                        champagne: '#C4AA83',
+                        purewhite: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #F4F0E8;
+            color: #101B2B;
+            font-family: 'Montserrat', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Smooth Crossfade transitions for full width carousels */
+        .carousel-slide {
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        /* Hide scrollbars for clean vertical thumbnail navigation */
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-ivory text-midnight antialiased selection:bg-champagne selection:text-midnight overflow-x-hidden">
+
+    <!-- Notification Toast Box -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-white border border-champagne/40 text-midnight px-6 py-4 rounded-sm shadow-2xl flex items-center space-x-4 pointer-events-none">
+        <i class="fa-solid fa-gem text-champagne text-xl"></i>
+        <div>
+            <h5 class="font-serif text-sm tracking-widest text-midnight font-semibold">MAISON CHRISTENZEN</h5>
+            <p id="toast-message" class="text-xs text-midnight/70">Item added to your private selection.</p>
+        </div>
+    </div>
+
+    <!-- Sticky Navigation Bar (Luxurious Midnight Navy Header Navbar) -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-40 bg-midnight/95 backdrop-blur-md border-b border-platinum/20 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-btn" class="md:hidden text-ivory focus:outline-none p-2" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+
+            <!-- Brand Logo (Intertwined MC Monogram) -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 border border-champagne/60 flex items-center justify-center rounded-sm transition-colors duration-300 group-hover:border-champagne">
+                    <span class="font-serif font-bold text-champagne text-lg tracking-tighter transition-colors">MC</span>
+                </div>
+                <div class="hidden sm:block">
+                    <span class="font-serif tracking-[0.25em] text-sm uppercase block text-ivory font-medium">Maison</span>
+                    <span class="font-serif tracking-[0.15em] text-[10px] uppercase block text-champagne">Christenzen</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-7">
+                <a href="#home" class="text-xs uppercase tracking-[0.2em] text-champagne font-semibold transition-colors">Home</a>
+                <a href="#jackets-section" class="text-xs uppercase tracking-[0.2em] text-ivory/80 hover:text-champagne transition-colors">New Arrivals</a>
+                <a href="#coats-section" class="text-xs uppercase tracking-[0.2em] text-ivory/80 hover:text-champagne transition-colors">Collections</a>
+                <a href="#pdp-section" class="text-xs uppercase tracking-[0.2em] text-ivory/80 hover:text-champagne transition-colors">Men</a>
+                <a href="#buttons-section" class="text-xs uppercase tracking-[0.2em] text-ivory/80 hover:text-champagne transition-colors">Women</a>
+                <a href="#philosophy" class="text-xs uppercase tracking-[0.2em] text-ivory/80 hover:text-champagne transition-colors">Journal</a>
+                <a href="#contact" class="text-xs uppercase tracking-[0.2em] text-ivory/80 hover:text-champagne transition-colors">Contact</a>
+            </nav>
+
+            <!-- Shopping Bag Icon -->
+            <div class="flex items-center space-x-6">
+                <button onclick="showToast('Your private shopping bag is currently empty.')" class="relative text-ivory hover:text-champagne transition-colors p-2" aria-label="Shopping Bag">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span class="absolute top-1 right-1 bg-champagne text-midnight text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-midnight border-b border-platinum/20 shadow-2xl transition-all duration-300">
+            <div class="flex flex-col px-8 py-6 space-y-4">
+                <a href="#home" class="mobile-link text-xs uppercase tracking-[0.2em] text-champagne py-2 border-b border-platinum/10 font-semibold">Home</a>
+                <a href="#jackets-section" class="mobile-link text-xs uppercase tracking-[0.2em] text-ivory py-2 border-b border-platinum/10">New Arrivals</a>
+                <a href="#coats-section" class="mobile-link text-xs uppercase tracking-[0.2em] text-ivory py-2 border-b border-platinum/10">Collections</a>
+                <a href="#pdp-section" class="mobile-link text-xs uppercase tracking-[0.2em] text-ivory py-2 border-b border-platinum/10">Men</a>
+                <a href="#buttons-section" class="mobile-link text-xs uppercase tracking-[0.2em] text-ivory py-2 border-b border-platinum/10">Women</a>
+                <a href="#philosophy" class="mobile-link text-xs uppercase tracking-[0.2em] text-ivory py-2 border-b border-platinum/10">Journal</a>
+                <a href="#contact" class="mobile-link text-xs uppercase tracking-[0.2em] text-ivory py-2">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section (Dark Midnight Navy #101B2B Aesthetic) -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-midnight text-ivory">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=2000&q=80" loading="lazy" alt="Maison Christenzen Luxury Fashion" class="w-full h-full object-cover object-center opacity-30 filter brightness-90">
+            <div class="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/70 to-midnight/40"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center py-24">
+            <span class="text-champagne uppercase tracking-[0.35em] text-xs font-semibold mb-4 block">Haute Couture</span>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl tracking-wider text-ivory font-light mb-6">
+                MAISON CHRISTENZEN
+            </h1>
+            <p class="font-serif italic text-xl md:text-2xl text-platinum/90 mb-10 tracking-wide">
+                "Elegance Redefined"
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#jackets-section" class="w-full sm:w-auto px-10 py-4 bg-transparent text-champagne border border-champagne hover:bg-champagne hover:text-midnight transition-all duration-300 text-xs uppercase tracking-[0.25em] font-medium shadow-lg">
+                    Shop The Collection
+                </a>
+                <a href="#philosophy" class="w-full sm:w-auto px-10 py-4 border border-platinum/30 text-ivory hover:border-ivory hover:bg-ivory/10 transition-all duration-300 text-xs uppercase tracking-[0.25em] font-medium">
+                    The Philosophy
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 hidden md:flex flex-col items-center space-y-2 opacity-70">
+            <span class="text-[9px] uppercase tracking-[0.3em] text-platinum">Scroll</span>
+            <div class="w-[1px] h-10 bg-gradient-to-b from-champagne to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- 1. Jackets Carousel Section (Warm Ivory / Alabaster Background) -->
+    <section id="jackets-section" class="py-20 border-t border-platinum/30 bg-ivory">
+        <div class="max-w-7xl mx-auto px-6 mb-8">
+            <span class="text-champagne uppercase tracking-[0.3em] text-xs font-semibold block mb-2">Signature Masterpieces</span>
+            <h2 class="font-serif text-3xl md:text-5xl text-midnight tracking-wide">Exquisite Jackets</h2>
+        </div>
+
+        <!-- 100% Screen Width Container -->
+        <div id="jackets-carousel" class="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-white border-y border-platinum/30 shadow-sm">
+            
+            <!-- Slide 1 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-100 z-10 flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1600&q=80" loading="lazy" alt="Sovereign Midnight Tuxedo" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">01 / 08 • Tailored Silk Blend</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">The Sovereign Midnight Tuxedo</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">Hand-crafted silk-wool tailored structure with pristine peak lapels. Designed for moments of absolute prestige and quiet distinction.</p>
+                    <button onclick="showToast('Sovereign Midnight Tuxedo added to your selection.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Acquire Piece</button>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1600&q=80" loading="lazy" alt="Double-Breasted Heritage Blazer" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">02 / 08 • Bespoke Wool</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">Double-Breasted Heritage Blazer</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">Sculpted shoulders, custom horn buttons, and immaculate Italian drape. A classic staple of European tailoring.</p>
+                    <button onclick="showToast('Double-Breasted Heritage Blazer added to your selection.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Acquire Piece</button>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=1600&q=80" loading="lazy" alt="Cashmere Grand Sport Coat" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">03 / 08 • Pure Cashmere</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">Cashmere Grand Sport Coat</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">Unstructured luxury designed for smooth transitions from formal affairs to evening leisure.</p>
+                    <button onclick="showToast('Cashmere Grand Sport Coat added to your selection.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Acquire Piece</button>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=1600&q=80" loading="lazy" alt="Vanguard Brocade Dinner Jacket" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">04 / 08 • Silk Jacquard</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">Vanguard Brocade Dinner Jacket</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">Woven subtle champagne highlights catching the light with effortless sophistication.</p>
+                    <button onclick="showToast('Vanguard Brocade Dinner Jacket added to your selection.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Acquire Piece</button>
+                </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1600&q=80" loading="lazy" alt="Ambassador Executive Blazer" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">05 / 08 • Merino Wool</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">Ambassador Executive Blazer</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">Precision tailored for commanding leaders who embody quiet power and timeless elegance.</p>
+                    <button onclick="showToast('Ambassador Executive Blazer added to your selection.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Acquire Piece</button>
+                </div>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=1600&q=80" loading="lazy" alt="Milanese Pinstripe Jacket" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">06 / 08 • Pinstripe Edition</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">Milanese Pinstripe Jacket</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">Slender architectural silhouette crafted in our North Italian workshop.</p>
+                    <button onclick="showToast('Milanese Pinstripe Jacket added to your selection.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Acquire Piece</button>
+                </div>
+            </div>
+
+            <!-- Slide 7 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1600&q=80" loading="lazy" alt="Nordic Tweed Aristocrat Jacket" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">07 / 08 • Heritage Tweed</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">Nordic Tweed Aristocrat Jacket</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">Deep woven texture offering unmatched warmth and noble aesthetic presence.</p>
+                    <button onclick="showToast('Nordic Tweed Aristocrat Jacket added to your selection.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Acquire Piece</button>
+                </div>
+            </div>
+
+            <!-- Slide 8 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1600&q=80" loading="lazy" alt="Nocturne Silk-Lined Jacket" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">08 / 08 • Pure Silk Interior</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">Nocturne Silk-Lined Jacket</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">Pure silk cupro lining with custom contrast stitching for tactile luxury.</p>
+                    <button onclick="showToast('Nocturne Silk-Lined Jacket added to your selection.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Acquire Piece</button>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="absolute bottom-8 right-8 z-20 flex items-center space-x-3">
+                <button class="carousel-prev w-12 h-12 bg-white/90 border border-platinum text-midnight hover:border-champagne hover:text-champagne flex items-center justify-center transition-colors shadow-sm" aria-label="Previous Slide">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="carousel-next w-12 h-12 bg-white/90 border border-platinum text-midnight hover:border-champagne hover:text-champagne flex items-center justify-center transition-colors shadow-sm" aria-label="Next Slide">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Indicators -->
+            <div class="absolute bottom-8 left-8 z-20 hidden sm:flex items-center space-x-2">
+                <button class="carousel-dot h-1.5 w-8 bg-champagne rounded-full transition-all" data-index="0"></button>
+                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="1"></button>
+                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="2"></button>
+                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="3"></button>
+                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="4"></button>
+                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="5"></button>
+                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="6"></button>
+                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="7"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Interactive PDP Section (Product Detail Page Showcase) -->
+    <section id="pdp-section" class="py-24 border-t border-platinum/30 bg-alabaster">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <div class="mb-12">
+                <span class="text-champagne uppercase tracking-[0.3em] text-xs font-semibold block mb-2">Bespoke Fitting Room</span>
+                <h2 id="pdp-title-main" class="font-serif text-3xl md:text-5xl text-midnight tracking-wide">The Grand Monarch Silk Tuxedo</h2>
+            </div>
+
+            <!-- Main PDP Layout Container -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- Left: Product Gallery (Vertical Thumbnails + Interactive Zoom Stage) -->
+                <div class="lg:col-span-7 flex flex-col-reverse md:flex-row gap-4">
+                    
+                    <!-- Vertical Thumbnail Navigation Gallery -->
+                    <div id="pdp-thumbs-container" class="flex md:flex-col space-x-3 md:space-x-0 md:space-y-3 overflow-x-auto md:overflow-y-auto max-h-[580px] scrollbar-none py-1 md:py-0 w-full md:w-24 shrink-0">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+
+                    <!-- Main Image Zoom Stage -->
+                    <div id="pdp-zoom-container" class="relative flex justify-center w-full h-[450px] sm:h-[580px] bg-white border border-platinum/30 rounded-sm overflow-hidden cursor-crosshair group">
+                        <!-- Main Display Image -->
+                        <img id="pdp-main-image" src="" alt="Active PDP Masterpiece" class=" h-full transition-transform duration-200">
+                        
+                        <!-- Interactive Zoom Instruction Tag -->
+                        <div class="absolute bottom-4 right-4 bg-midnight/80 backdrop-blur-md border border-champagne/40 text-ivory text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-sm pointer-events-none opacity-80 group-hover:opacity-0 transition-opacity">
+                            <i class="fa-solid fa-magnifying-glass-plus text-champagne mr-1.5"></i> Hover To Inspect Detail
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: PDP Details & Configuration Panel -->
+                <div class="lg:col-span-5 bg-white p-8 md:p-10 border border-platinum/30 shadow-sm rounded-sm flex flex-col justify-between">
+                    <div>
+                        <!-- Header & Pricing -->
+                        <div class="border-b border-platinum/20 pb-6 mb-6">
+                            <span id="pdp-subtitle" class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold block mb-1">Haute Couture • Autumn/Winter</span>
+                            <h3 id="pdp-title" class="font-serif text-3xl text-midnight font-normal mb-3">The Grand Monarch Silk Tuxedo</h3>
+                            <div class="flex items-baseline space-x-4">
+                                <span id="pdp-price" class="font-serif text-2xl text-midnight font-medium">€4,850</span>
+                                <span class="text-xs text-platinum/80 uppercase tracking-widest">In Stock • Salon Exclusive</span>
+                            </div>
+                        </div>
+
+                        <!-- Product Summary -->
+                        <p id="pdp-description" class="text-sm text-midnight/70 font-light leading-relaxed mb-8">
+                            Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.
+                        </p>
+
+                        <!-- Color Swatches Selector -->
+                        <!-- <div class="mb-8">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-xs uppercase tracking-[0.2em] font-semibold text-midnight">Color: <span id="selected-color-label" class="text-champagne font-normal">Midnight Obsidian</span></span>
+                            </div>
+                            <div id="pdp-color-swatches" class="flex space-x-3">
+                                !-- Populated dynamically --
+                            </div>
+                        </div> -->
+
+                        <!-- Size Selector -->
+                        <!-- <div class="mb-8">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-xs uppercase tracking-[0.2em] font-semibold text-midnight">Select Size (EU)</span>
+                                <button onclick="showToast('Sizing Guide: Italian Tailored Silhouette. True to Size.')" class="text-[11px] uppercase tracking-wider text-champagne hover:underline font-medium">Fitting Guide</button>
+                            </div>
+                            <div class="grid grid-cols-5 gap-2">
+                                <button onclick="selectSize(this)" class="pdp-size-btn border border-platinum/40 py-2.5 text-xs text-midnight font-medium hover:border-champagne transition-all rounded-sm">48</button>
+                                <button onclick="selectSize(this)" class="pdp-size-btn border-2 border-midnight bg-midnight text-ivory py-2.5 text-xs font-medium transition-all rounded-sm">50</button>
+                                <button onclick="selectSize(this)" class="pdp-size-btn border border-platinum/40 py-2.5 text-xs text-midnight font-medium hover:border-champagne transition-all rounded-sm">52</button>
+                                <button onclick="selectSize(this)" class="pdp-size-btn border border-platinum/40 py-2.5 text-xs text-midnight font-medium hover:border-champagne transition-all rounded-sm">54</button>
+                                <button onclick="selectSize(this)" class="pdp-size-btn border border-platinum/40 py-2.5 text-xs text-midnight font-medium hover:border-champagne transition-all rounded-sm">56</button>
+                            </div>
+                        </div> -->
+
+                        <!-- Action Buttons -->
+                        <!-- <div class="space-y-3 mb-8">
+                            <button onclick="acquireCurrentPDP()" class="w-full bg-midnight border border-midnight text-ivory py-4 text-xs uppercase tracking-[0.25em] font-semibold hover:bg-champagne hover:border-champagne hover:text-midnight transition-all duration-300 shadow-md">
+                                Acquire Piece
+                            </button>
+                            <button onclick="showToast('Bespoke Private Salon appointment request transmitted to concierge.')" class="w-full border border-platinum/40 bg-transparent text-midnight py-3.5 text-xs uppercase tracking-[0.2em] font-medium hover:border-midnight transition-all duration-300">
+                                Request Private Fitting
+                            </button>
+                        </div> -->
+
+                        <!-- Collapsible Information Accordion -->
+                        <div class="border-t border-platinum/30 pt-6 space-y-4">
+                            <details class="group" open>
+                                <summary class="flex justify-between items-center font-serif text-sm text-midnight cursor-pointer list-none py-1">
+                                    <span class="uppercase tracking-widest text-xs font-semibold">Craftsmanship & Details</span>
+                                    <span class="transition group-open:rotate-180 text-champagne"><i class="fa-solid fa-chevron-down text-xs"></i></span>
+                                </summary>
+                                <ul id="pdp-details-list" class="text-xs text-midnight/70 font-light leading-relaxed mt-3 space-y-1.5 list-disc list-inside pl-1">
+                                    <!-- Populated dynamically -->
+                                </ul>
+                            </details>
+
+                            <details class="group border-t border-platinum/20 pt-4">
+                                <summary class="flex justify-between items-center font-serif text-sm text-midnight cursor-pointer list-none py-1">
+                                    <span class="uppercase tracking-widest text-xs font-semibold">Fabric & Care</span>
+                                    <span class="transition group-open:rotate-180 text-champagne"><i class="fa-solid fa-chevron-down text-xs"></i></span>
+                                </summary>
+                                <p id="pdp-fabric-text" class="text-xs text-midnight/70 font-light leading-relaxed mt-3">
+                                    70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only. Store on supplied cedar wood coat hanger.
+                                </p>
+                            </details>
+
+                            <details class="group border-t border-platinum/20 pt-4">
+                                <summary class="flex justify-between items-center font-serif text-sm text-midnight cursor-pointer list-none py-1">
+                                    <span class="uppercase tracking-widest text-xs font-semibold">Complimentary Delivery & Returns</span>
+                                    <span class="transition group-open:rotate-180 text-champagne"><i class="fa-solid fa-chevron-down text-xs"></i></span>
+                                </summary>
+                                <p class="text-xs text-midnight/70 font-light leading-relaxed mt-3">
+                                    Delivered in a handcrafted garment box with signature suit cover. Express white-glove worldwide shipping within 2-4 business days.
+                                </p>
+                            </details>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Lower Carousel with Dynamic PDP State Swap -->
+    <section id="collection-swap-section" class="py-16 bg-ivory border-t border-platinum/30">
+        <div class="max-w-7xl mx-auto px-6 mb-8 flex flex-col md:flex-row md:items-end justify-between">
+            <div>
+                <span class="text-champagne uppercase tracking-[0.3em] text-xs font-semibold block mb-2">Private Salon Catalog</span>
+                <h3 class="font-serif text-2xl md:text-4xl text-midnight">Curated Masterpieces — Select to Swap into Detail View</h3>
+            </div>
+            <p class="text-xs text-midnight/60 font-light mt-2 md:mt-0 italic">Click any piece to swap it directly into the showcase above</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6">
+            <div id="swap-carousel-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Dynamic swapping cards populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Coats Carousel Section (100% Screen Width, 2 Full Crossfade Items) -->
+    <section id="coats-section" class="py-20 border-t border-platinum/30 bg-alabaster">
+        <div class="max-w-7xl mx-auto px-6 mb-8">
+            <span class="text-champagne uppercase tracking-[0.3em] text-xs font-semibold block mb-2">Grand Outerwear</span>
+            <h2 class="font-serif text-3xl md:text-5xl text-midnight tracking-wide">Majestic Coats</h2>
+        </div>
+
+        <div id="coats-carousel" class="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-white border-y border-platinum/30 shadow-sm">
+            <!-- Slide 1 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-100 z-10 flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1600&q=80" loading="lazy" alt="Sovereign Double-Face Overcoat" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">01 / 02 • Double Cashmere</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">Sovereign Double-Face Overcoat</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">An architectural overcoat in double-face cashmere, engineered to command cold climates with quiet elegance.</p>
+                    <button onclick="showToast('Sovereign Double-Face Overcoat added to your selection.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Acquire Piece</button>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=1600&q=80" loading="lazy" alt="Regent Long Trench Overcoat" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">02 / 02 • Fine Virgin Wool</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">Regent Long Trench Overcoat</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">Features belted proportions and deep midnight contours for an unforgettable winter presence.</p>
+                    <button onclick="showToast('Regent Long Trench Overcoat added to your selection.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Acquire Piece</button>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="absolute bottom-8 right-8 z-20 flex items-center space-x-3">
+                <button class="carousel-prev w-12 h-12 bg-white/90 border border-platinum text-midnight hover:border-champagne hover:text-champagne flex items-center justify-center transition-colors shadow-sm" aria-label="Previous Slide">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="carousel-next w-12 h-12 bg-white/90 border border-platinum text-midnight hover:border-champagne hover:text-champagne flex items-center justify-center transition-colors shadow-sm" aria-label="Next Slide">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Indicators -->
+            <div class="absolute bottom-8 left-8 z-20 hidden sm:flex items-center space-x-2">
+                <button class="carousel-dot h-1.5 w-8 bg-champagne rounded-full transition-all" data-index="0"></button>
+                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="1"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Buttons & Details Carousel Section (100% Screen Width, 2 Full Crossfade Items) -->
+    <section id="buttons-section" class="py-20 border-t border-platinum/30 bg-ivory">
+        <div class="max-w-7xl mx-auto px-6 mb-8">
+            <span class="text-champagne uppercase tracking-[0.3em] text-xs font-semibold block mb-2">Bespoke Hardware & Craftsmanship</span>
+            <h2 class="font-serif text-3xl md:text-5xl text-midnight tracking-wide">Exquisite Buttons & Details</h2>
+        </div>
+
+        <div id="buttons-carousel" class="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-white border-y border-platinum/30 shadow-sm">
+            <!-- Slide 1 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-100 z-10 flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1600&q=80" loading="lazy" alt="Engraved Buffalo Horn Buttons" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">01 / 02 • Horn & Platinum Engraving</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">Engraved Buffalo Horn Buttons</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">Polished natural horn buttons subtly laser-etched with the MC crest for discreet luxury.</p>
+                    <button onclick="showToast('Inquiry recorded for Bespoke Horn Buttons.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Explore Hardware</button>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1598554747436-c9293d6a588f?auto=format&fit=crop&w=1600&q=80" loading="lazy" alt="Hand-Sewn Silk Cupro Lining" class="w-full h-full object-cover">
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">02 / 02 • Hand-Stitched Canvas</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">Hand-Sewn Silk Cupro Lining</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">Inside each jacket lies delicate hand-pick stitching and smooth silk jacquard lining.</p>
+                    <button onclick="showToast('Inquiry recorded for Silk Cupro Lining details.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Explore Hardware</button>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="absolute bottom-8 right-8 z-20 flex items-center space-x-3">
+                <button class="carousel-prev w-12 h-12 bg-white/90 border border-platinum text-midnight hover:border-champagne hover:text-champagne flex items-center justify-center transition-colors shadow-sm" aria-label="Previous Slide">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="carousel-next w-12 h-12 bg-white/90 border border-platinum text-midnight hover:border-champagne hover:text-champagne flex items-center justify-center transition-colors shadow-sm" aria-label="Next Slide">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Indicators -->
+            <div class="absolute bottom-8 left-8 z-20 hidden sm:flex items-center space-x-2">
+                <button class="carousel-dot h-1.5 w-8 bg-champagne rounded-full transition-all" data-index="0"></button>
+                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="1"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Presentation / Brand Philosophy Manifesto -->
+    <section id="philosophy" class="py-28 bg-ivory border-t border-platinum/30 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <span class="text-champagne uppercase tracking-[0.35em] text-xs font-semibold block mb-4">Manifesto</span>
+            
+            <h2 class="font-serif text-3xl md:text-5xl text-midnight mb-4 tracking-wide font-light">
+                The Art of Presence
+            </h2>
+            
+            <h3 class="font-serif italic text-xl md:text-2xl text-champagne mb-12 font-light">
+                An Expression of Masculinity, Character, and Timeless Elegance
+            </h3>
+
+            <div class="space-y-6 text-midnight/80 font-light text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
+                <p>
+                    Maison Christenzen was born from a personal conviction: to preserve the essence of masculine elegance, the integrity of character, and the enduring distinction of a true gentleman.
+                </p>
+                <p>
+                    Inspired by men who live by their principles, act with purpose, and carry themselves with quiet confidence. Men whose character is reflected in their actions, whose individuality requires no explanation, and whose presence leaves a lasting impression.
+                </p>
+                <p>
+                    This philosophy became the foundation of Maison Christenzen.
+                </p>
+                <p>
+                    Our ambition was never simply to create beautiful jackets. We envisioned garments that enhance the masculine silhouette, complement individuality, and bring a natural sense of refinement to the man wearing them.
+                </p>
+            </div>
+
+            <div class="mt-16 pt-12 border-t border-platinum/40">
+                <p class="text-xs uppercase tracking-[0.3em] text-champagne font-semibold mb-2">MAISON CHRISTENZEN</p>
+                <p class="font-serif italic text-2xl md:text-3xl text-midnight tracking-wide">
+                    "Luxury Is Not Announced. It Is Recognized."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Video Campaign Carousel Section (100% Screen Width with Native Lazy Loading) -->
+    <section id="videos-section" class="py-20 border-t border-platinum/30 bg-alabaster">
+        <div class="max-w-7xl mx-auto px-6 mb-8">
+            <span class="text-champagne uppercase tracking-[0.3em] text-xs font-semibold block mb-2">Cinematic Campaigns</span>
+            <h2 class="font-serif text-3xl md:text-5xl text-midnight tracking-wide">The Autumn/Winter Films</h2>
+        </div>
+
+        <div id="videos-carousel" class="relative w-full h-[85vh] min-h-[600px] overflow-hidden bg-white border-y border-platinum/30 shadow-sm">
+            <!-- Video Slide 1 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-100 z-10 flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative bg-black flex items-center justify-center">
+                    <video preload="none" loading="lazy" controls loop muted class="w-full h-full object-cover">
+                        <source src="./videos/cris-beige.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">Film 01 / 03 • Paris Salon</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">The Nocturne Silhouette</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">An intimate view into our autumn evening collection against the twilight architecture of Paris.</p>
+                    <button onclick="showToast('Playing full film presentation.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Watch Campaign</button>
+                </div>
+            </div>
+
+            <!-- Video Slide 2 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative bg-black flex items-center justify-center">
+                    <video preload="none" loading="lazy" controls loop muted class="w-full h-full object-cover">
+                        <source src="./videos/cris-clip5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">Film 02 / 03 • Milan Atelier</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">The Architecture of Tailoring</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">Master tailors shaping double-face cashmere coats through meticulous hand-stitch processes.</p>
+                    <button onclick="showToast('Playing full film presentation.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Watch Campaign</button>
+                </div>
+            </div>
+
+            <!-- Video Slide 3 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 z-0 pointer-events-none flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-3/5 h-1/2 lg:h-full relative bg-black flex items-center justify-center">
+                    <video preload="none" loading="lazy" controls loop muted class="w-full h-full object-cover">
+                        <source src="./videos/cris-clip.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="w-full lg:w-2/5 h-1/2 lg:h-full p-8 lg:p-20 flex flex-col justify-center bg-white">
+                    <span class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold mb-2">Film 03 / 03 • Zurich Private View</span>
+                    <h3 class="font-serif text-3xl md:text-4xl text-midnight mb-4">Behind the Private Salon</h3>
+                    <p class="text-sm text-midnight/70 font-light leading-relaxed mb-8">An exclusive glimpse into private salon fittings and custom hardware selection for gentlemen.</p>
+                    <button onclick="showToast('Playing full film presentation.')" class="self-start px-8 py-3.5 border border-midnight text-xs uppercase tracking-[0.25em] text-midnight hover:bg-midnight hover:text-ivory transition-all">Watch Campaign</button>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="absolute bottom-8 right-8 z-20 flex items-center space-x-3">
+                <button class="carousel-prev w-12 h-12 bg-white/90 border border-platinum text-midnight hover:border-champagne hover:text-champagne flex items-center justify-center transition-colors shadow-sm" aria-label="Previous Slide">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="carousel-next w-12 h-12 bg-white/90 border border-platinum text-midnight hover:border-champagne hover:text-champagne flex items-center justify-center transition-colors shadow-sm" aria-label="Next Slide">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Indicators -->
+            <div class="absolute bottom-8 left-8 z-20 hidden sm:flex items-center space-x-2">
+                <button class="carousel-dot h-1.5 w-8 bg-champagne rounded-full transition-all" data-index="0"></button>
+                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="1"></button>
+                <button class="carousel-dot h-1.5 w-3 bg-platinum/60 rounded-full transition-all" data-index="2"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Footer Section (Dark Midnight Navy #101B2B Luxury Aesthetic) -->
+    <footer id="contact" class="bg-midnight text-ivory pt-20 pb-12 border-t border-platinum/20">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            
+            <div class="space-y-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 border border-champagne flex items-center justify-center rounded-sm">
+                        <span class="font-serif font-bold text-champagne text-lg">MC</span>
+                    </div>
+                    <div>
+                        <span class="font-serif tracking-[0.2em] text-sm uppercase block text-ivory">Maison</span>
+                        <span class="font-serif tracking-[0.1em] text-[10px] uppercase block text-champagne">Christenzen</span>
+                    </div>
+                </div>
+                <p class="text-xs text-platinum/70 leading-relaxed font-light">
+                    Luxury is not announced. It is recognized. Uncompromising commitment to masculine elegance and European distinction.
+                </p>
+                <div class="text-xs text-champagne font-serif italic">
+                    Paris • Milan • London • Zurich
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-serif text-sm uppercase tracking-[0.2em] text-ivory mb-6">Navigation</h4>
+                <ul class="space-y-3 text-xs tracking-wider text-platinum/80 font-light">
+                    <li><a href="#home" class="hover:text-champagne transition-colors">Home</a></li>
+                    <li><a href="#jackets-section" class="hover:text-champagne transition-colors">New Arrivals</a></li>
+                    <li><a href="#coats-section" class="hover:text-champagne transition-colors">Collections</a></li>
+                    <li><a href="#buttons-section" class="hover:text-champagne transition-colors">Hardware Details</a></li>
+                    <li><a href="#videos-section" class="hover:text-champagne transition-colors">Cinematic Campaigns</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-serif text-sm uppercase tracking-[0.2em] text-ivory mb-6">Client Concierge</h4>
+                <ul class="space-y-3 text-xs tracking-wider text-platinum/80 font-light">
+                    <li><a href="#contact" onclick="showToast('Connecting to Private Concierge.')" class="hover:text-champagne transition-colors">Private Salon Appointments</a></li>
+                    <li><a href="#contact" onclick="showToast('Bespoke fitting request received.')" class="hover:text-champagne transition-colors">Bespoke Inquiries</a></li>
+                    <li><a href="#contact" onclick="showToast('Global Delivery info displayed.')" class="hover:text-champagne transition-colors">Worldwide Delivery</a></li>
+                    <li><a href="#contact" onclick="showToast('Garment Care guide requested.')" class="hover:text-champagne transition-colors">Garment Preservation</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-serif text-sm uppercase tracking-[0.2em] text-ivory mb-6">Private Circle</h4>
+                <p class="text-xs text-platinum/70 font-light mb-4">Receive invitations to private collection debuts.</p>
+                <form onsubmit="event.preventDefault(); showToast('Thank you for joining the Maison Christenzen private circle.');" class="flex flex-col space-y-3">
+                    <input type="email" placeholder="Enter your email" required class="bg-midnight/80 border border-platinum/30 px-4 py-3 text-xs text-ivory focus:outline-none focus:border-champagne rounded-sm placeholder:text-platinum/50">
+                    <button type="submit" class="w-full bg-transparent border border-champagne text-champagne py-3 text-xs uppercase tracking-[0.2em] font-semibold hover:bg-champagne hover:text-midnight transition-colors">Subscribe</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-platinum/20 flex flex-col md:flex-row items-center justify-between text-xs text-platinum/60 font-light">
+            <p>&copy; 2026 Maison Christenzen. All rights reserved.</p>
+            
+            <div class="flex items-center space-x-6 mt-4 md:mt-0">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 border border-platinum/30 rounded-full flex items-center justify-center hover:border-champagne hover:text-champagne transition-colors">
+                    <i class="fa-brands fa-facebook-f text-sm"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 border border-platinum/30 rounded-full flex items-center justify-center hover:border-champagne hover:text-champagne transition-colors">
+                    <i class="fa-brands fa-instagram text-sm"></i>
+                </a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="w-9 h-9 border border-platinum/30 rounded-full flex items-center justify-center hover:border-champagne hover:text-champagne transition-colors">
+                    <i class="fa-brands fa-tiktok text-sm"></i>
+                </a>
+                <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-9 h-9 border border-platinum/30 rounded-full flex items-center justify-center hover:border-champagne hover:text-champagne transition-colors">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                </a>
+                <a href="mailto:concierge@maisonchristenzen.com" aria-label="Email Concierge" class="w-9 h-9 border border-platinum/30 rounded-full flex items-center justify-center hover:border-champagne hover:text-champagne transition-colors">
+                    <i class="fa-solid fa-envelope text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Interactive Mechanics -->
+    <script>
+        // Master Products Dataset for Dynamic State Swapping
+        const catalogProducts = [
+            {
+                id: 'pdp-1',
+                title: 'Black Jacket',
+                subtitle: 'Haute Couture • Autumn/Winter',
+                price: '€4,850',
+                description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
+                fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
+                details: [
+                    'Fully canvassed chest construction',
+                    'Hand-stitched silk cupro inner lining',
+                    'Real horn buttons with subtle laser crest engraving',
+                    'Double welt pockets with silk piping'
+                ],
+                colors: [
+                    { name: 'Midnight Obsidian', hex: '#101B2B' },
+                    { name: 'Champagne Velvet', hex: '#C4AA83' },
+                    { name: 'Royal Charcoal', hex: '#2A2E35' }
+                ],
+                images: [
+                    './jacket-black/1.png',
+                    './jacket-black/2.png',
+                    './jacket-black/3.png',
+                    './jacket-black/4.png',
+                    './jacket-black/5.png',
+                    './jacket-black/6.png',
+                    './jacket-black/7.png',
+                    './jacket-black/8.png',
+                    './jacket-black/9.png',
+                ]
+            },
+            {
+                id: 'pdp-2',
+                title: 'Red Jacket',
+                subtitle: 'Haute Couture • Autumn/Winter',
+                price: '€4,850',
+                description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
+                fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
+                details: [
+                    'Fully canvassed chest construction',
+                    'Hand-stitched silk cupro inner lining',
+                    'Real horn buttons with subtle laser crest engraving',
+                    'Double welt pockets with silk piping'
+                ],
+                colors: [
+                    { name: 'Midnight Obsidian', hex: '#101B2B' },
+                    { name: 'Champagne Velvet', hex: '#C4AA83' },
+                    { name: 'Royal Charcoal', hex: '#2A2E35' }
+                ],
+                images: [
+                    './jacket-red/1.png',
+                    './jacket-red/2.png',
+                    './jacket-red/3.png',
+                    './jacket-red/4.png',
+                    './jacket-red/5.png',
+                    './jacket-red/6.png',
+                    './jacket-red/7.png',
+                    './jacket-red/8.png',
+                    './jacket-red/9.png',
+                    './jacket-red/10.png',
+                    './jacket-red/11.png',
+                    './jacket-red/12.png',
+                    './jacket-red/13.png',
+                    './jacket-red/14.png',
+                    './jacket-red/15.png',
+                    './jacket-red/16.png',
+                ]
+            },
+            {
+                id: 'pdp-3',
+                title: 'Fabric Black Jacket',
+                subtitle: 'Haute Couture • Autumn/Winter',
+                price: '€4,850',
+                description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
+                fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
+                details: [
+                    'Fully canvassed chest construction',
+                    'Hand-stitched silk cupro inner lining',
+                    'Real horn buttons with subtle laser crest engraving',
+                    'Double welt pockets with silk piping'
+                ],
+                colors: [
+                    { name: 'Midnight Obsidian', hex: '#101B2B' },
+                    { name: 'Champagne Velvet', hex: '#C4AA83' },
+                    { name: 'Royal Charcoal', hex: '#2A2E35' }
+                ],
+                images: [
+                    './fabric-black-jacket/1.png',
+                    './fabric-black-jacket/2.png',
+                    './fabric-black-jacket/3.png',
+                    './fabric-black-jacket/4.png',
+                    './fabric-black-jacket/5.png',
+                    './fabric-black-jacket/6.png',
+                    './fabric-black-jacket/7.png',
+                    './fabric-black-jacket/8.png',
+                ]
+            },
+        ];
+
+        // Currently Active PDP Item State (Default to item 0)
+        let activePDPProduct = catalogProducts[0];
+        let carouselCatalog = catalogProducts.slice(1);
+
+        // Render Active Product into PDP
+        function renderPDP(product) {
+            activePDPProduct = product;
+
+            // Text elements
+            document.getElementById('pdp-title-main').textContent = product.title;
+            document.getElementById('pdp-title').textContent = product.title;
+            document.getElementById('pdp-subtitle').textContent = product.subtitle;
+            document.getElementById('pdp-price').textContent = product.price;
+            document.getElementById('pdp-description').textContent = product.description;
+            document.getElementById('pdp-fabric-text').textContent = product.fabric;
+
+            // Details List
+            const detailsContainer = document.getElementById('pdp-details-list');
+            detailsContainer.innerHTML = '';
+            product.details.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                detailsContainer.appendChild(li);
+            });
+
+            // Main Image
+            const mainImg = document.getElementById('pdp-main-image');
+            mainImg.src = product.images[0];
+
+            // Render Thumbnails
+            const thumbsContainer = document.getElementById('pdp-thumbs-container');
+            thumbsContainer.innerHTML = '';
+            product.images.forEach((imgUrl, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `pdp-thumb ${idx === 0 ? 'border-2 border-champagne opacity-100' : 'border border-platinum/40 opacity-60'} rounded-sm overflow-hidden w-20 h-24 md:w-24 md:h-28 shrink-0 focus:outline-none transition-all duration-300`;
+                btn.onclick = () => changePDPImage(btn, imgUrl);
+                btn.innerHTML = `<img src="${imgUrl}" alt="Thumbnail ${idx + 1}" class="w-full h-full object-cover">`;
+                thumbsContainer.appendChild(btn);
+            });
+
+            // Render Color Swatches
+            // const colorContainer = document.getElementById('pdp-color-swatches');
+            // colorContainer.innerHTML = '';
+            // product.colors.forEach((col, idx) => {
+            //     const btn = document.createElement('button');
+            //     btn.className = `w-8 h-8 rounded-full ${idx === 0 ? 'border-2 border-champagne ring-2 ring-champagne/30' : 'border border-platinum/40'} focus:outline-none transition-all hover:scale-105`;
+            //     btn.style.backgroundColor = col.hex;
+            //     btn.onclick = () => selectColor(col.name, btn);
+            //     colorContainer.appendChild(btn);
+            // });
+            // document.getElementById('selected-color-label').textContent = product.colors[0].name;
+
+            // Re-bind zoom listener
+            initPDPZoom();
+        }
+
+        // Render Lower Swap Carousel Grid
+        function renderSwapCarousel() {
+            const grid = document.getElementById('swap-carousel-grid');
+            grid.innerHTML = '';
+
+            carouselCatalog.forEach((prod) => {
+                const card = document.createElement('div');
+                card.className = 'bg-white border border-platinum/30 p-4 rounded-sm shadow-sm hover:border-champagne transition-all duration-300 flex flex-col justify-between group cursor-pointer';
+                card.onclick = () => swapProductToPDP(prod.id);
+
+                card.innerHTML = `
+                    <div class="relative w-full h-64 overflow-hidden mb-4 bg-alabaster rounded-sm">
+                        <img src="${prod.images[0]}" alt="${prod.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-midnight/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-white/90 text-midnight text-[10px] uppercase tracking-widest px-4 py-2 border border-champagne font-semibold shadow-md">
+                                Swap Into Detail View
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-champagne block font-semibold mb-1">${prod.subtitle}</span>
+                        <h4 class="font-serif text-lg text-midnight group-hover:text-champagne transition-colors mb-2">${prod.title}</h4>
+                        <div class="flex items-center justify-between border-t border-platinum/20 pt-3">
+                            <span class="font-serif text-sm font-medium text-midnight">${prod.price}</span>
+                            <span class="text-[10px] uppercase tracking-wider text-midnight/60 font-medium group-hover:underline">View &amp; Customise &rarr;</span>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // DYNAMIC STATE SWAP LOGIC
+        function swapProductToPDP(selectedId) {
+            const selectedIndex = carouselCatalog.findIndex(p => p.id === selectedId);
+            if (selectedIndex === -1) return;
+
+            const newPDPProduct = carouselCatalog[selectedIndex];
+            const oldPDPProduct = activePDPProduct;
+
+            // Swap items
+            carouselCatalog[selectedIndex] = oldPDPProduct;
+            renderPDP(newPDPProduct);
+            renderSwapCarousel();
+
+            // Smooth scroll up to PDP
+            document.getElementById('pdp-section').scrollIntoView({ behavior: 'smooth' });
+
+            showToast(`Swapped: "${newPDPProduct.title}" loaded into showcase.`);
+        }
+
+        // Notification Toast Handler
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+            
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        function acquireCurrentPDP() {
+            showToast(`Acquired: ${activePDPProduct.title} added to your private selection.`);
+        }
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Modular Full-Width 100% Crossfade Carousel Engine
+        function createCrossfadeCarousel(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const slides = container.querySelectorAll('.carousel-slide');
+            const dots = container.querySelectorAll('.carousel-dot');
+            const prevBtn = container.querySelector('.carousel-prev');
+            const nextBtn = container.querySelector('.carousel-next');
+
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+
+            function updateCarousel(targetIndex) {
+                slides.forEach((slide, idx) => {
+                    if (idx === targetIndex) {
+                        slide.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
+                        slide.classList.add('opacity-100', 'pointer-events-auto', 'z-10');
+                    } else {
+                        slide.classList.remove('opacity-100', 'pointer-events-auto', 'z-10');
+                        slide.classList.add('opacity-0', 'pointer-events-none', 'z-0');
+                    }
+                });
+
+                dots.forEach((dot, idx) => {
+                    if (idx === targetIndex) {
+                        dot.classList.remove('w-3', 'bg-platinum/60');
+                        dot.classList.add('w-8', 'bg-champagne');
+                    } else {
+                        dot.classList.remove('w-8', 'bg-champagne');
+                        dot.classList.add('w-3', 'bg-platinum/60');
+                    }
+                });
+
+                currentIndex = targetIndex;
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const nextIndex = (currentIndex + 1) % totalSlides;
+                    updateCarousel(nextIndex);
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    const prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    updateCarousel(prevIndex);
+                });
+            }
+
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    updateCarousel(idx);
+                });
+            });
+        }
+
+        // Interactive PDP Gallery Thumbnail Switcher
+        function changePDPImage(thumbnailEl, imageUrl) {
+            const mainImg = document.getElementById('pdp-main-image');
+            if (mainImg) {
+                mainImg.src = imageUrl;
+            }
+
+            const allThumbs = document.querySelectorAll('.pdp-thumb');
+            allThumbs.forEach(thumb => {
+                thumb.classList.remove('border-2', 'border-champagne', 'opacity-100');
+                thumb.classList.add('border', 'border-platinum/40', 'opacity-60');
+            });
+
+            thumbnailEl.classList.remove('border', 'border-platinum/40', 'opacity-60');
+            thumbnailEl.classList.add('border-2', 'border-champagne', 'opacity-100');
+        }
+
+        // Interactive Image Cursor Magnifier
+        function initPDPZoom() {
+            const container = document.getElementById('pdp-zoom-container');
+            const img = document.getElementById('pdp-main-image');
+
+            if (!container || !img) return;
+
+            container.onmousemove = (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const xPercent = (x / rect.width) * 100;
+                const yPercent = (y / rect.height) * 100;
+
+                img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+                img.style.transform = 'scale(2.2)';
+            };
+
+            container.onmouseleave = () => {
+                img.style.transform = 'scale(1)';
+                img.style.transformOrigin = 'center center';
+            };
+        }
+
+        // Color Swatch Selection
+        function selectColor(colorName, buttonEl) {
+            document.getElementById('selected-color-label').textContent = colorName;
+            
+            const colorBtns = buttonEl.parentElement.querySelectorAll('button');
+            colorBtns.forEach(btn => {
+                btn.classList.remove('border-2', 'border-champagne', 'ring-2', 'ring-champagne/30');
+                btn.classList.add('border', 'border-platinum/40');
+            });
+
+            buttonEl.classList.remove('border', 'border-platinum/40');
+            buttonEl.classList.add('border-2', 'border-champagne', 'ring-2', 'ring-champagne/30');
+        }
+
+        // Size Button Selection
+        function selectSize(buttonEl) {
+            const sizeBtns = document.querySelectorAll('.pdp-size-btn');
+            sizeBtns.forEach(btn => {
+                btn.classList.remove('border-2', 'border-midnight', 'bg-midnight', 'text-ivory');
+                btn.classList.add('border', 'border-platinum/40', 'text-midnight');
+            });
+
+            buttonEl.classList.remove('border', 'border-platinum/40', 'text-midnight');
+            buttonEl.classList.add('border-2', 'border-midnight', 'bg-midnight', 'text-ivory');
+        }
+
+        // Initialize All Systems on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPDP(activePDPProduct);
+            renderSwapCarousel();
+
+            createCrossfadeCarousel('jackets-carousel');
+            createCrossfadeCarousel('coats-carousel');
+            createCrossfadeCarousel('buttons-carousel');
+            createCrossfadeCarousel('videos-carousel');
+        });
+    </script>
+</body>
+</html>
