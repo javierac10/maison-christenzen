@@ -32,6 +32,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <!-- Favicon estándar SVG (Escalable para todos los navegadores modernos) -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Favicon alternativo en PNG para compatibilidad con navegadores antiguos -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.svg">
+
+    <!-- Icono para dispositivos Apple (iOS / Safari) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.svg">
+
+    <!-- Color de la barra de direcciones en navegadores móviles -->
+    <meta name="theme-color" content="#0D131F">
+
     <style>
         body {
             background-color: #F4F0E8;
@@ -99,12 +114,12 @@
             </nav>
 
             <!-- Shopping Bag Icon -->
-            <div class="flex items-center space-x-6">
+            <!-- <div class="flex items-center space-x-6">
                 <button onclick="showToast('Your private shopping bag is currently empty.')" class="relative text-ivory hover:text-champagne transition-colors p-2" aria-label="Shopping Bag">
                     <i class="fa-solid fa-bag-shopping text-lg"></i>
                     <span class="absolute top-1 right-1 bg-champagne text-midnight text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
                 </button>
-            </div>
+            </div> -->
         </div>
 
         <!-- Mobile Menu Drawer -->
@@ -310,6 +325,7 @@
                 <!-- Left: Product Gallery (Vertical Thumbnails + Interactive Zoom Stage) -->
                 <div class="lg:col-span-7 flex flex-col-reverse md:flex-row gap-4">
                     
+                    
                     <!-- Vertical Thumbnail Navigation Gallery -->
                     <div id="pdp-thumbs-container" class="flex md:flex-col space-x-3 md:space-x-0 md:space-y-3 overflow-x-auto md:overflow-y-auto max-h-[580px] scrollbar-none py-1 md:py-0 w-full md:w-24 shrink-0">
                         <!-- Populated dynamically by JS -->
@@ -392,7 +408,7 @@
                                 </ul>
                             </details>
 
-                            <details class="group border-t border-platinum/20 pt-4">
+                            <details class="group border-t border-platinum/20 pt-4 hidden">
                                 <summary class="flex justify-between items-center font-serif text-sm text-midnight cursor-pointer list-none py-1">
                                     <span class="uppercase tracking-widest text-xs font-semibold">Fabric & Care</span>
                                     <span class="transition group-open:rotate-180 text-champagne"><i class="fa-solid fa-chevron-down text-xs"></i></span>
@@ -402,7 +418,7 @@
                                 </p>
                             </details>
 
-                            <details class="group border-t border-platinum/20 pt-4">
+                            <details class="group border-t border-platinum/20 pt-4 hidden">
                                 <summary class="flex justify-between items-center font-serif text-sm text-midnight cursor-pointer list-none py-1">
                                     <span class="uppercase tracking-widest text-xs font-semibold">Complimentary Delivery & Returns</span>
                                     <span class="transition group-open:rotate-180 text-champagne"><i class="fa-solid fa-chevron-down text-xs"></i></span>
@@ -890,21 +906,27 @@
             {
                 id: 'pdp-6',
                 title: 'Orange Jacket',
-                subtitle: 'Haute Couture • Autumn/Winter',
-                price: '€1,130',
-                description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
+                subtitle: '',
+                price: '$3,5000 CAD',
+                description: `<strong>The Art of Presence</strong>
+<p>A distinctive expression of modern elegance, the Orange Jacket combines refined tailoring with exceptional comfort.</p>
+<p>Crafted from a luxurious blend of baby alpaca and fine wool, the fabric offers remarkable softness, natural warmth, and a beautiful drape. Its rich orange tone brings character and sophistication to a timeless design.</p>
+<p>The jacket features structured shoulders, classic notch lapels, a refined masculine silhouette, and carefully finished stitching. Dark mother-of-pearl buttons, four-button cuffs, and precisely tailored flap pockets complete its distinctive look.</p>
+<p>Every detail is thoughtfully considered to achieve a balance of elegance, comfort, and craftsmanship.</p>
+`,
                 fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
                 details: [
-                    'Fully canvassed chest construction',
-                    'Hand-stitched silk cupro inner lining',
-                    'Real horn buttons with subtle laser crest engraving',
-                    'Double welt pockets with silk piping'
+                    `<strong>Fabric:</strong> Premium baby alpaca and fine wool blend`,
+                    `<strong>Color:</strong> Rich orange`,
+                    `<strong>Fit:</strong> Refined masculine silhouette with subtle waist shaping`,
+                    `<strong>Lapels:</strong> Classic notch lapels`,
+                    `<strong>Buttons:</strong> Dark mother-of-pearl, two front buttons and four on each cuff`,
+                    `<strong>Pockets:</strong> Chest welt pocket and two lower flap pockets`,
+                    `<strong>Finishing:</strong> Refined stitching and carefully tailored details`,
+                    `<strong>Craftsmanship:</strong> Artisanal tailoring with hand-finished details`,
+
                 ],
-                colors: [
-                    { name: 'Midnight Obsidian', hex: '#101B2B' },
-                    { name: 'Champagne Velvet', hex: '#C4AA83' },
-                    { name: 'Royal Charcoal', hex: '#2A2E35' }
-                ],
+                colors: [],
                 images: [
                     './jackets/orange-jacket/1.png',
                     './jackets/orange-jacket/2.png',
@@ -1093,7 +1115,7 @@
             document.getElementById('pdp-title').textContent = product.title;
             document.getElementById('pdp-subtitle').textContent = product.subtitle;
             document.getElementById('pdp-price').textContent = product.price;
-            document.getElementById('pdp-description').textContent = product.description;
+            document.getElementById('pdp-description').innerHTML = product.description;
             document.getElementById('pdp-fabric-text').textContent = product.fabric;
 
             // Details List
@@ -1101,7 +1123,7 @@
             detailsContainer.innerHTML = '';
             product.details.forEach(item => {
                 const li = document.createElement('li');
-                li.textContent = item;
+                li.innerHTML = item;
                 detailsContainer.appendChild(li);
             });
 
@@ -1410,6 +1432,21 @@
             const whereToGo = currentVideoSlide + direction;
             console.log("Changing video slide to:", whereToGo);
             showVideoSlide(whereToGo);
+        }
+
+        function scrollThumbnails(direction) {
+            const container = document.getElementById('vertical-thumb-container');
+            if (!container) return;
+
+            // Detecta si la galería está dispuesta de forma vertical (desktop) u horizontal (móvil)
+            const isVertical = window.innerWidth >= 1024;
+            const scrollAmount = 140;
+
+            if (isVertical) {
+                container.scrollBy({ top: direction * scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+            }
         }
 
         // Initialize All Systems on Load
