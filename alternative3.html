@@ -92,8 +92,9 @@
 
             <!-- Brand Logo (Intertwined MC Monogram) -->
             <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 border border-champagne/60 flex items-center justify-center rounded-sm transition-colors duration-300 group-hover:border-champagne">
-                    <span class="font-serif font-bold text-champagne text-lg tracking-tighter transition-colors">MC</span>
+                <div class="w-14 h-14 flex items-center justify-center rounded-sm transition-colors duration-300 group-hover:border-champagne">
+                    <!-- <span class="font-serif font-bold text-champagne text-lg tracking-tighter transition-colors">MC</span> -->
+                     <img src="./logo.png" alt="Maison Christenzen">
                 </div>
                 <div class="hidden sm:block">
                     <span class="font-serif tracking-[0.25em] text-sm uppercase block text-ivory font-medium">Maison</span>
@@ -307,8 +308,12 @@
     </section> -->
 
     <!-- temporal -->
-    <!-- <section id="pdp-section234" class="py-24 border-t border-platinum/30 bg-alabaster">
-        <img src="./new/blue-jacket.png" class="w-full h-auto rounded-sm">
+    <!-- <section id="pdp-section234" class="py-24 border-t border-platinum/30 bg-alabaster bg-white">
+
+        <ul class="flex" style="gap: 0.3rem; max-width: 70%;">
+            <li><img src="./jackets/navy-blue-jacket/123.png" class="w-full h-auto rounded-sm"></li>
+        </ul>
+        
     </section> -->
     <!-- 2. Interactive PDP Section (Product Detail Page Showcase) -->
     <section id="pdp-section" class="py-24 border-t border-platinum/30 bg-alabaster">
@@ -346,14 +351,10 @@
                 <!-- Right: PDP Details & Configuration Panel -->
                 <div class="lg:col-span-5 bg-white p-8 md:p-10 border border-platinum/30 shadow-sm rounded-sm flex flex-col justify-between">
                     <div>
-                        <!-- Header & Pricing -->
+                        <!-- Header -->
                         <div class="border-b border-platinum/20 pb-6 mb-6">
-                            <span id="pdp-subtitle" class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold block mb-1">Haute Couture • Autumn/Winter</span>
+                            <span id="pdp-subtitle" class="text-xs uppercase tracking-[0.25em] text-champagne font-semibold block mb-1"></span>
                             <h3 id="pdp-title" class="font-serif text-3xl text-midnight font-normal mb-3">The Grand Monarch Silk Tuxedo</h3>
-                            <div class="flex items-baseline space-x-4">
-                                <span id="pdp-price" class="font-serif text-2xl text-midnight font-medium">€4,850</span>
-                                <span class="text-xs text-platinum/80 uppercase tracking-widest">In Stock • Salon Exclusive</span>
-                            </div>
                         </div>
 
                         <!-- Product Summary -->
@@ -362,15 +363,14 @@
                         </p>
 
                         <!-- Color Swatches Selector -->
-                        <!-- <div class="mb-8">
+                        <div id="pdp-color-selector" class="mb-8">
                             <div class="flex justify-between items-center mb-3">
                                 <span class="text-xs uppercase tracking-[0.2em] font-semibold text-midnight">Color: <span id="selected-color-label" class="text-champagne font-normal">Midnight Obsidian</span></span>
                             </div>
                             <div id="pdp-color-swatches" class="flex space-x-3">
-                                !-- Populated dynamically --
+                                <!-- Populated dynamically -->
                             </div>
-                        </div> -->
-
+                        </div>
                         <!-- Size Selector -->
                         <!-- <div class="mb-8">
                             <div class="flex justify-between items-center mb-3">
@@ -397,8 +397,8 @@
                         </div> -->
 
                         <!-- Collapsible Information Accordion -->
-                        <div class="border-t border-platinum/30 pt-6 space-y-4">
-                            <details class="group" open>
+                        <div>
+                            <details id="pdp-details-jacket-title" class="border-t border-platinum/30 pt-6 space-y-4 group" open>
                                 <summary class="flex justify-between items-center font-serif text-sm text-midnight cursor-pointer list-none py-1">
                                     <span class="uppercase tracking-widest text-xs font-semibold">Craftsmanship & Details</span>
                                     <span class="transition group-open:rotate-180 text-champagne"><i class="fa-solid fa-chevron-down text-xs"></i></span>
@@ -408,13 +408,13 @@
                                 </ul>
                             </details>
 
-                            <details class="group border-t border-platinum/20 pt-4 hidden">
+                            <details id="pdp-fabric-details" class="group border-t border-platinum/20 pt-4 hidden">
                                 <summary class="flex justify-between items-center font-serif text-sm text-midnight cursor-pointer list-none py-1">
                                     <span class="uppercase tracking-widest text-xs font-semibold">Fabric & Care</span>
                                     <span class="transition group-open:rotate-180 text-champagne"><i class="fa-solid fa-chevron-down text-xs"></i></span>
                                 </summary>
                                 <p id="pdp-fabric-text" class="text-xs text-midnight/70 font-light leading-relaxed mt-3">
-                                    70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only. Store on supplied cedar wood coat hanger.
+
                                 </p>
                             </details>
 
@@ -427,6 +427,10 @@
                                     Delivered in a handcrafted garment box with signature suit cover. Express white-glove worldwide shipping within 2-4 business days.
                                 </p>
                             </details>
+                        </div>
+                        <div  class="border-t border-platinum/30 pt-6 flex items-baseline space-x-4">
+                            <span id="pdp-price" class="font-serif text-2xl text-midnight font-medium">€4,850</span>
+                            <!-- <span class="text-xs text-platinum/80 uppercase tracking-widest">In Stock • Salon Exclusive</span> -->
                         </div>
 
                     </div>
@@ -752,38 +756,40 @@
         const catalogProducts = [
             {
                 id: 'pdp-1',
-                title: 'Black Jacket',
-                subtitle: 'Haute Couture • Autumn/Winter',
-                price: '€4,850',
-                description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
+                title: 'Black Signature Jacket',
+                subtitle: '',
+                price: '$4,000 CAD',
+                description: `
+                <strong class="font-black">The Art of Presence</strong>
+<p>A statement of timeless elegance and masculine sophistication.</p>
+<p>Crafted from a luxurious blend of Peruvian baby alpaca and fine wool, this jacket offers exceptional softness, comfort, and a refined silhouette.</p>
+<p>Its distinctive design features carefully executed artisanal stitching along the lapels, pockets, and seams, reflecting the precision of fine tailoring.</p>
+<p>Natural mother-of-pearl buttons and elegant leather cuff details complete the design, adding a subtle touch of luxury.</p>
+<p>Every detail has been thoughtfully considered to create a jacket that combines confidence, craftsmanship, and timeless style.</p>
+                <br>
+                <p>Luxury is not announced. It is recognized.</p>
+                `,
                 fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
                 details: [
-                    'Fully canvassed chest construction',
-                    'Hand-stitched silk cupro inner lining',
-                    'Real horn buttons with subtle laser crest engraving',
-                    'Double welt pockets with silk piping'
                 ],
                 colors: [
-                    { name: 'Midnight Obsidian', hex: '#101B2B' },
-                    { name: 'Champagne Velvet', hex: '#C4AA83' },
-                    { name: 'Royal Charcoal', hex: '#2A2E35' }
                 ],
                 images: [
-                    './jackets/luxury-black-jacket/1.png',
-                    './jackets/luxury-black-jacket/2.png',
-                    './jackets/luxury-black-jacket/3.png',
-                    './jackets/luxury-black-jacket/4.png',
-                    './jackets/luxury-black-jacket/5.png',
-                    './jackets/luxury-black-jacket/6.png',
-                    './jackets/luxury-black-jacket/7.png',
-                    './jackets/luxury-black-jacket/8.png',
-                    './jackets/luxury-black-jacket/9.png',
+                    './jackets/black-signature-jacket/1.png',
+                    './jackets/black-signature-jacket/2.png',
+                    './jackets/black-signature-jacket/3.png',
+                    './jackets/black-signature-jacket/4.png',
+                    './jackets/black-signature-jacket/5.png',
+                    './jackets/black-signature-jacket/6.png',
+                    './jackets/black-signature-jacket/7.png',
+                    './jackets/black-signature-jacket/8.png',
+                    './jackets/black-signature-jacket/9.png',
                 ]
             },
             {
                 id: 'pdp-2',
                 title: 'Red Jacket',
-                subtitle: 'Haute Couture • Autumn/Winter',
+                subtitle: '',
                 price: '€4,850',
                 description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
                 fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
@@ -820,7 +826,7 @@
             {
                 id: 'pdp-3',
                 title: 'Fabric Black Jacket',
-                subtitle: 'Haute Couture • Autumn/Winter',
+                subtitle: '',
                 price: '€4,850',
                 description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
                 fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
@@ -849,20 +855,19 @@
             {
                 id: 'pdp-4',
                 title: 'Fabric Blue Jacket',
-                subtitle: 'Haute Couture • Autumn/Winter',
-                price: '€2,130',
-                description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
-                fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
+                subtitle: '',
+                price: '$1,300 CAD',
+                description: `
+                <strong class="font-black">The Art of Presence</strong>
+                <p>Crafted from premium 100% cotton denim, this jacket combines classic tailoring with modern sophistication.</p>
+                <p>Its refined design features structured shoulders, elegant lapels, carefully finished stitching, and distinctive metallic buttons. The two-button front, four-button cuffs, and tailored pockets complete its masculine silhouette.</p>
+                <p>A versatile piece created with attention to detail, comfort, and timeless elegance.</p>
+
+                `,
+                fabric: '',
                 details: [
-                    'Fully canvassed chest construction',
-                    'Hand-stitched silk cupro inner lining',
-                    'Real horn buttons with subtle laser crest engraving',
-                    'Double welt pockets with silk piping'
                 ],
                 colors: [
-                    { name: 'Midnight Obsidian', hex: '#101B2B' },
-                    { name: 'Champagne Velvet', hex: '#C4AA83' },
-                    { name: 'Royal Charcoal', hex: '#2A2E35' }
                 ],
                 images: [
                     './jackets/blue-jacket/1.png',
@@ -878,20 +883,31 @@
             {
                 id: 'pdp-5',
                 title: 'Navy Blue Jacket',
-                subtitle: 'Haute Couture • Autumn/Winter',
-                price: '€1,130',
-                description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
-                fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
+                subtitle: '',
+                price: '$3,500 CAD',
+                description: `
+                <p>A refined expression of masculine elegance, exceptional materials, and timeless sophistication.</p>
+                <p>Crafted from an exclusive blend of *75% fine wool, 20% Royal Alpaca, and 5% nylon*, this double-breasted blazer offers remarkable softness, comfort, and a beautifully structured silhouette.</p>
+                <p>Its deep navy fabric, elegant peak lapels, sculpted shoulders, and tailored fit create a distinguished appearance. Natural mother-of-pearl buttons and subtle contrast stitching highlight the precision and craftsmanship of Maison Christenzen.</p>
+                `,
+                fabric: `
+                <p>*75% Fine Wool | 20% Royal Alpaca | 5% Nylon*</p>
+                <p><em>Made in Peru</em> — Artisanal craftsmanship and contemporary luxury tailoring.</p>
+
+                `,
                 details: [
-                    'Fully canvassed chest construction',
-                    'Hand-stitched silk cupro inner lining',
-                    'Real horn buttons with subtle laser crest engraving',
-                    'Double welt pockets with silk piping'
+                    '<strong class="font-black">Design:</strong> Double-breasted construction with six front buttons.',
+                    '<strong class="font-black">Silhouette:</strong> Structured shoulders and refined masculine tailoring.',
+                    '<strong class="font-black">Lapels:</strong> Wide peak lapels with contrast stitching.',
+                    '<strong class="font-black">Buttons:</strong> Natural brown mother-of-pearl.',
+                    '<strong class="font-black">Sleeves:</strong> Four buttons on each cuff.',
+                    '<strong class="font-black">Pockets:</strong> Chest welt pocket and two lower flap pockets.',
+                    '<strong class="font-black">Stitching:</strong> Precision topstitching with hand-finished details.',
+                    '<strong class="font-black">Back:</strong> Clean center seam with refined finishing.',
+                    '<strong class="font-black">Lining:</strong> Smooth brown interior lining with Maison Christenzen branding.',
+
                 ],
                 colors: [
-                    { name: 'Midnight Obsidian', hex: '#101B2B' },
-                    { name: 'Champagne Velvet', hex: '#C4AA83' },
-                    { name: 'Royal Charcoal', hex: '#2A2E35' }
                 ],
                 images: [
                     './jackets/navy-blue-jacket/1.png',
@@ -899,8 +915,6 @@
                     './jackets/navy-blue-jacket/3.png',
                     './jackets/navy-blue-jacket/4.png',
                     './jackets/navy-blue-jacket/5.png',
-                    './jackets/navy-blue-jacket/6.png',
-                    './jackets/navy-blue-jacket/7.png',
                 ]
             },
             {
@@ -908,30 +922,30 @@
                 title: 'Orange Jacket',
                 subtitle: '',
                 price: '$3,5000 CAD',
-                description: `<strong>The Art of Presence</strong>
+                description: `<strong class="font-black">The Art of Presence</strong>
 <p>A distinctive expression of modern elegance, the Orange Jacket combines refined tailoring with exceptional comfort.</p>
 <p>Crafted from a luxurious blend of baby alpaca and fine wool, the fabric offers remarkable softness, natural warmth, and a beautiful drape. Its rich orange tone brings character and sophistication to a timeless design.</p>
 <p>The jacket features structured shoulders, classic notch lapels, a refined masculine silhouette, and carefully finished stitching. Dark mother-of-pearl buttons, four-button cuffs, and precisely tailored flap pockets complete its distinctive look.</p>
 <p>Every detail is thoughtfully considered to achieve a balance of elegance, comfort, and craftsmanship.</p>
 `,
-                fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
+                fabric: '',
                 details: [
-                    `<strong>Fabric:</strong> Premium baby alpaca and fine wool blend`,
-                    `<strong>Color:</strong> Rich orange`,
-                    `<strong>Fit:</strong> Refined masculine silhouette with subtle waist shaping`,
-                    `<strong>Lapels:</strong> Classic notch lapels`,
-                    `<strong>Buttons:</strong> Dark mother-of-pearl, two front buttons and four on each cuff`,
-                    `<strong>Pockets:</strong> Chest welt pocket and two lower flap pockets`,
-                    `<strong>Finishing:</strong> Refined stitching and carefully tailored details`,
-                    `<strong>Craftsmanship:</strong> Artisanal tailoring with hand-finished details`,
+                    `<strong class="font-black">Fabric:</strong> Premium baby alpaca and fine wool blend`,
+                    `<strong class="font-black">Color:</strong> Rich orange`,
+                    `<strong class="font-black">Fit:</strong> Refined masculine silhouette with subtle waist shaping`,
+                    `<strong class="font-black">Lapels:</strong> Classic notch lapels`,
+                    `<strong class="font-black">Buttons:</strong> Dark mother-of-pearl, two front buttons and four on each cuff`,
+                    `<strong class="font-black">Pockets:</strong> Chest welt pocket and two lower flap pockets`,
+                    `<strong class="font-black">Finishing:</strong> Refined stitching and carefully tailored details`,
+                    `<strong class="font-black">Craftsmanship:</strong> Artisanal tailoring with hand-finished details`,
 
                 ],
                 colors: [],
                 images: [
                     './jackets/orange-jacket/1.png',
-                    './jackets/orange-jacket/2.png',
+                    './jackets/orange-jacket/2.jpeg',
                     './jackets/orange-jacket/3.png',
-                    './jackets/orange-jacket/4.png',
+                    './jackets/orange-jacket/4.jpeg',
                     './jackets/orange-jacket/5.png',
                     './jackets/orange-jacket/6.png',
                     './jackets/orange-jacket/7.png',
@@ -939,32 +953,43 @@
             },
             {
                 id: 'pdp-7',
-                title: 'Safari Jacket',
-                subtitle: 'Haute Couture • Autumn/Winter',
-                price: '€1,130',
-                description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
-                fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
+                title: 'The Beige Safari Jacket',
+                subtitle: '',
+                price: '$1,300 CAD',
+                description: `<strong class="font-black">The Art of Presence</strong>
+                        <p>Crafted from a luxurious blend of Peruvian baby alpaca and fine wool, this safari jacket combines softness, comfort, and timeless elegance.</p>
+                        <p>Its refined design features a structured stand collar, four front pockets, natural mother-of-pearl buttons, and carefully finished stitching.</p>
+                        <p>An adjustable back waist tab adds a distinctive touch while maintaining a clean, masculine silhouette.</p>
+                        <p>A perfect balance of traditional craftsmanship and modern sophistication.</p>
+                        <br>
+                        <p>Luxury is not announced. It is recognized.</p>
+
+`,
+                fabric: '',
                 details: [
-                    'Fully canvassed chest construction',
-                    'Hand-stitched silk cupro inner lining',
-                    'Real horn buttons with subtle laser crest engraving',
-                    'Double welt pockets with silk piping'
                 ],
                 colors: [
-                    { name: 'Midnight Obsidian', hex: '#101B2B' },
-                    { name: 'Champagne Velvet', hex: '#C4AA83' },
-                    { name: 'Royal Charcoal', hex: '#2A2E35' }
+                    { name: 'Beige', hex: '#F5F5DC' },
+                    { name: 'Dark Beige', hex: '#75756C' },
                 ],
                 images: [
-                    './jackets/safari-jacket/1.png',
-                    './jackets/safari-jacket/2.png',
-                    './jackets/safari-jacket/3.png',
+                    './jackets/beige-safari-jacket/1.png',
+                    './jackets/beige-safari-jacket/2.png',
+                    './jackets/beige-safari-jacket/3.png',
+                    './jackets/beige-safari-jacket/4.png',
+                    './jackets/beige-safari-jacket/5.png',
+                    './jackets/beige-safari-jacket/6.png',
+                    './jackets/beige-safari-jacket/7.png',
+                    './jackets/beige-safari-jacket/8.png',
+                    './jackets/beige-safari-jacket/9.png',
+                    './jackets/beige-safari-jacket/10.png'
+                    
                 ]
             },
             {
                 id: 'pdp-8',
                 title: 'Chocolate Jacket',
-                subtitle: 'Haute Couture • Autumn/Winter',
+                subtitle: '',
                 price: '€1,130',
                 description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
                 fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
@@ -992,7 +1017,7 @@
             {
                 id: 'pdp-9',
                 title: 'Black Jacket',
-                subtitle: 'Haute Couture • Autumn/Winter',
+                subtitle: '',
                 price: '€1,130',
                 description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
                 fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
@@ -1017,7 +1042,7 @@
             {
                 id: 'pdp-10',
                 title: 'Baby Alpaca Heritage Beige Jacket',
-                subtitle: 'Haute Couture • Autumn/Winter',
+                subtitle: '',
                 price: '€1,130',
                 description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
                 fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
@@ -1047,21 +1072,31 @@
             },
             {
                 id: 'pdp-11',
-                title: 'Alpaca Light Brown Jacket',
-                subtitle: 'Haute Couture • Autumn/Winter',
-                price: '€1,130',
-                description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
-                fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
+                title: 'The Alpaca Blazer',
+                subtitle: '',
+                price: '$4,000 CAD',
+                description: `
+                <p>A refined expression of timeless elegance and contemporary sophistication.</p>
+                <p>Crafted from an exclusive blend of premium baby alpaca and fine wool, this blazer combines exceptional softness, natural warmth, and a beautifully structured drape.</p>
+                <p>Its distinguished silhouette features carefully shaped shoulders, refined lapels, and a tailored waist that enhances the masculine form while maintaining comfort and freedom of movement.</p>
+                <p>Subtle leather accents, natural mother-of-pearl buttons, and meticulously executed hand-finished details reflect Maison Christenzen's commitment to exceptional craftsmanship.</p>
+                `,
+                fabric: `
+                <p>Fabric: Premium blend of baby alpaca and fine wool.</p>
+                <p>Origin: Made in Peru, combining traditional artisanal expertise with contemporary luxury tailoring.</p>
+                `,
                 details: [
-                    'Fully canvassed chest construction',
-                    'Hand-stitched silk cupro inner lining',
-                    'Real horn buttons with subtle laser crest engraving',
-                    'Double welt pockets with silk piping'
+                    'Design: Refined tailored silhouette with structured shoulders and elegant lapels.',
+                    'Chest Pocket: Angled pocket with genuine leather trim.',
+                    'Side Pockets: Angled pockets with leather accents, designed to complement the jacket\'s clean lines.',
+                    'Buttons: Natural dark brown mother-of-pearl.',
+                    'Sleeves: Four mother-of-pearl buttons on each cuff.',
+                    'Stitching: Precision topstitching with subtle hand-finished detailing along the lapels and seams.',
+                    'Back: Single center vent with a clean, carefully finished construction.',
+                    'Lining: Soft, breathable interior lining for lasting comfort.'
+
                 ],
                 colors: [
-                    { name: 'Midnight Obsidian', hex: '#101B2B' },
-                    { name: 'Champagne Velvet', hex: '#C4AA83' },
-                    { name: 'Royal Charcoal', hex: '#2A2E35' }
                 ],
                 images: [
                     './jackets/alpaca-light-brown-jacket/1.png',
@@ -1072,14 +1107,12 @@
                     './jackets/alpaca-light-brown-jacket/6.png',
                     './jackets/alpaca-light-brown-jacket/7.png',
                     './jackets/alpaca-light-brown-jacket/8.png',
-                    './jackets/alpaca-light-brown-jacket/9.png',
-                    './jackets/alpaca-light-brown-jacket/10.png',
                 ]
             },
             {
                 id: 'pdp-12',
                 title: 'Brown Jacket Cuero Tela',
-                subtitle: 'Haute Couture • Autumn/Winter',
+                subtitle: '',
                 price: '€1,130',
                 description: 'Engineered from Mulberry silk and virgin merino wool. Features hand-padded peak lapels, sculpted chest canvassing, and signature laser-engraved buffalo horn hardware.',
                 fabric: '70% Mulberry Silk, 30% Virgin Merino Wool. Specialised dry clean only.',
@@ -1100,6 +1133,35 @@
                     './jackets/brown-jacket-cuero-tela/3.png',
                 ]
             },
+            {
+                id: 'pdp-13',
+                title: 'Baby Alpaca Black Jacket',
+                subtitle: '',
+                price: '$1,300 CAD',
+                description: `
+                <strong class="font-black">The Art of Presence</strong>
+                <p>Crafted from a luxurious blend of Peruvian baby alpaca and fine wool, this jacket offers exceptional softness, a refined texture, and an elegant, structured silhouette.
+                <p>Featuring natural mother-of-pearl buttons, four distinctive flap pockets, and precise stitching, every detail reflects thoughtful craftsmanship.</p>
+                <p>Expertly tailored in Peru by skilled artisans using traditional tailoring techniques, with carefully executed hand-finished details that enhance the quality and refinement of the garment.</p>
+                <p>A timeless piece combining exceptional materials, sophisticated design, and artisanal expertise.</p>
+                <br>
+                <p>Made in Peru</p>
+                <br>
+                <p>Luxury is not announced. It is recognized.</p>`,
+                details: [
+                ],
+                colors: [
+                ],
+                images: [
+                    './jackets/baby-alpaca-black-jacket/1.png',
+                    './jackets/baby-alpaca-black-jacket/2.png',
+                    './jackets/baby-alpaca-black-jacket/3.png',
+                    './jackets/baby-alpaca-black-jacket/4.png',
+                    './jackets/baby-alpaca-black-jacket/5.png',
+                    './jackets/baby-alpaca-black-jacket/6.png',
+                    './jackets/baby-alpaca-black-jacket/7.png',
+                ]
+            },
         ];
 
         // Currently Active PDP Item State (Default to item 0)
@@ -1116,16 +1178,27 @@
             document.getElementById('pdp-subtitle').textContent = product.subtitle;
             document.getElementById('pdp-price').textContent = product.price;
             document.getElementById('pdp-description').innerHTML = product.description;
-            document.getElementById('pdp-fabric-text').textContent = product.fabric;
+
+            if(product.fabric && product.fabric.length > 0) {
+                document.getElementById('pdp-fabric-text').innerHTML = product.fabric;
+                document.getElementById('pdp-fabric-details').classList.remove('hidden');
+            } else {
+                document.getElementById('pdp-fabric-details').classList.add('hidden');
+            }
 
             // Details List
             const detailsContainer = document.getElementById('pdp-details-list');
             detailsContainer.innerHTML = '';
+            if (product.details && product.details.length > 0) {
+                document.getElementById('pdp-details-jacket-title').classList.remove('hidden');
             product.details.forEach(item => {
                 const li = document.createElement('li');
                 li.innerHTML = item;
                 detailsContainer.appendChild(li);
             });
+            } else {
+                document.getElementById('pdp-details-jacket-title').classList.add('hidden');
+            }
 
             // Main Image
             const mainImg = document.getElementById('pdp-main-image');
@@ -1143,16 +1216,22 @@
             });
 
             // Render Color Swatches
-            // const colorContainer = document.getElementById('pdp-color-swatches');
-            // colorContainer.innerHTML = '';
-            // product.colors.forEach((col, idx) => {
-            //     const btn = document.createElement('button');
-            //     btn.className = `w-8 h-8 rounded-full ${idx === 0 ? 'border-2 border-champagne ring-2 ring-champagne/30' : 'border border-platinum/40'} focus:outline-none transition-all hover:scale-105`;
-            //     btn.style.backgroundColor = col.hex;
-            //     btn.onclick = () => selectColor(col.name, btn);
-            //     colorContainer.appendChild(btn);
-            // });
-            // document.getElementById('selected-color-label').textContent = product.colors[0].name;
+            const colorContainer = document.getElementById('pdp-color-swatches');
+            const colorSelector = document.getElementById('pdp-color-selector');
+            colorContainer.innerHTML = '';
+            if (product.colors && product.colors.length > 0) {
+                product.colors.forEach((col, idx) => {
+                    colorSelector.classList.remove('hidden');
+                    const btn = document.createElement('button');
+                    btn.className = `w-8 h-8 rounded-full ${idx === 0 ? 'border-2 border-champagne ring-2 ring-champagne/30' : 'border border-platinum/40'} focus:outline-none transition-all hover:scale-105`;
+                    btn.style.backgroundColor = col.hex;
+                    btn.onclick = () => selectColor(col.name, btn);
+                    colorContainer.appendChild(btn);
+                });
+                document.getElementById('selected-color-label').textContent = product.colors[0].name;
+            } else {
+                colorSelector.classList.add('hidden');
+            }
 
             // Re-bind zoom listener
             initPDPZoom();
