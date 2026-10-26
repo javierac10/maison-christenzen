@@ -99,3 +99,12 @@
 .cloth-preview .cloth-square{width:66px;height:66px}
 .cloth-chip .cloth-square{width:100%;height:auto;margin:0}
 .cloth-square img{border:0!important;image-rendering:auto}
+
+/* Slightly closer hero framing, preserving the complete garment. */
+.hero-image>img{transform:scale(1.04);transform-origin:center}
+.hero-image:hover>img{transform:scale(1.055)}
+
+/* Centered square studio portrait in the opening hero. */
+.hero-image{min-height:0;height:auto;aspect-ratio:1/1;align-self:center;background:#99938b}
+.hero-image>img{display:block;object-fit:contain;object-position:center;transform:scale(1)}
+.hero-image:hover>img{transform:scale(1.015)}
