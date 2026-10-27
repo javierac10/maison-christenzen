@@ -108,3 +108,49 @@
 .hero-image{min-height:0;height:auto;aspect-ratio:1/1;align-self:center;background:#99938b}
 .hero-image>img{display:block;object-fit:contain;object-position:center;transform:scale(1)}
 .hero-image:hover>img{transform:scale(1.015)}
+
+/* Compact phone layout: retain readable type and complete garment photographs. */
+@media(max-width:760px){
+ html{scroll-padding-top:20px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+ .header{height:88px;padding:0 5%}
+ .brand.logo-window{width:132px;height:80px}
+ .header-actions{gap:12px}.languages{gap:4px}.menu-button{width:32px;min-height:44px}
+ .mobile-nav{top:88px}
+ .hero-copy{padding:28px 6% 24px}
+ .hero h1{font-size:clamp(42px,11.5vw,62px);line-height:1.02;margin:18px 0}
+ .hero-description{font-size:13px;line-height:1.7;max-width:35em}
+ .hero .eyebrow{font-size:8px;letter-spacing:.1em;gap:9px}
+ .hero .dash{width:18px;flex:none}
+ .button-ivory{margin-top:20px;padding:14px 18px;min-height:48px}
+ .hero-bottom{padding-top:24px;font-size:6px;gap:8px;letter-spacing:.08em}
+ .hero-image{width:100%;min-width:0;min-height:0;height:auto;aspect-ratio:1}
+ .image-caption{padding:16px 6%}.image-caption>span:first-child{font-size:20px;gap:5px}
+ .circle-arrow{width:34px;height:34px;font-size:18px}
+ .signature-strip{padding:20px 6%}.signature-strip p{font-size:18px;line-height:1.45}
+ .signature-strip a{margin-top:12px}
+ .section-pad{padding:40px 6%}
+ .section-heading{margin-bottom:22px}.section-heading h2,.safari-copy h2,.story h2,.craft h2{font-size:clamp(30px,8.4vw,40px);line-height:1.15}
+ .section-intro{font-size:13px;line-height:1.7;margin-top:16px}
+ .collection-tools{padding:14px 0;gap:10px}.filters{gap:24px;flex-wrap:wrap}.filters button{min-height:40px;font-size:11px}
+ .products{gap:24px 12px}.product{min-width:0}.product-image{padding:8px}
+ .product h3{font-size:17px;overflow-wrap:break-word}.product-info{padding-top:12px;gap:6px}.product-info p{font-size:10px;line-height:1.5}
+ .safari-edit{gap:24px}.safari-copy>p:not(.eyebrow){font-size:13px;line-height:1.75}
+ .fabric-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}
+ .fabric-grid img{height:auto}.fabric-grid button{min-width:0;font-size:11px}
+ .cloth-heading{margin:32px 0 20px}.cloth-heading h3{font-size:26px}.cloth-chips{gap:16px 12px}.cloth-chip{width:calc((100% - 24px)/3)}.cloth-chip img{width:100%}
+ .craft-image{height:auto;min-height:0;aspect-ratio:1}.craft-image img{width:100%;height:100%;object-fit:contain}
+ .craft-copy{padding:36px 6%}.craft h2{margin:16px 0 22px}.craft-intro{font-size:13px;line-height:1.75}
+ .craft-lines{margin-top:24px}.craft-lines>div{gap:16px;padding:16px 0}
+ .maison-film h2{font-size:30px;margin:14px 0 22px}.film-credit{font-size:10px}
+ .story{gap:28px;padding:40px 6%}.story-visual{max-width:100%;width:100%}.story-visual img{height:auto;max-height:350px;object-fit:contain}
+ .story h2{margin:16px 0 20px}.story-lead{font-size:19px;line-height:1.5}.story-copy>p:not(.eyebrow):not(.story-lead):not(.story-signature){font-size:13px;line-height:1.75}
+ .closing{padding:40px 6% 32px}.closing-quote{font-size:29px}.closing .closing-logo{width:220px}
+ footer{padding:22px 6%;gap:14px;line-height:1.6}
+ .product-dialog{width:94vw;max-height:94dvh;margin:auto}.dialog-layout{min-width:0}
+ .dialog-gallery{padding:14px}.dialog-image-wrap{padding:12px;min-width:0}.dialog-copy{padding:24px 20px 30px}
+ .dialog-copy h2{font-size:32px;margin:16px 0}.dialog-copy .eyebrow{line-height:1.6;overflow-wrap:anywhere}
+ .dialog-close{position:sticky;float:right;top:10px;right:10px;margin:10px 10px -46px 0;width:40px;height:40px}
+ .thumbnails{gap:7px}.thumbnails button{width:48px;height:56px}
+ .photo-controls{gap:8px;align-items:center;flex-wrap:wrap}.photo-controls button{font-size:11px;padding:8px}
+ .photo-scroll{padding:10px}.size-box{padding:14px}.selected-size-table{font-size:12px}
+}
