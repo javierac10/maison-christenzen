@@ -86,7 +86,7 @@
 
 .maison-film{background:#f7f7f5}.maison-film h2{font-family:Georgia,serif;font-size:clamp(30px,4vw,54px);font-weight:400;margin:15px 0 30px}.maison-film video{display:block;width:100%;max-width:1200px;aspect-ratio:16/9;margin:auto;background:#111}
 
-.fabric-grid button[data-photo="fabric4"]{grid-column:1/-1}.fabric-square[data-region="fabric4"]{aspect-ratio:5.86}
+.fabric-grid button[data-photo="fabric4"]{grid-column:auto}.fabric-square[data-region="fabric4"]{aspect-ratio:3/4}.fabric-grid button[data-photo="fabric4"] img{object-fit:contain;background:#faf9f6}
 
 .film-credit{max-width:1200px;margin:12px auto 0;font-size:12px;line-height:1.65;color:#646464}.film-credit a{text-decoration:underline;text-underline-offset:3px}
 
@@ -154,3 +154,38 @@
  .photo-controls{gap:8px;align-items:center;flex-wrap:wrap}.photo-controls button{font-size:11px;padding:8px}
  .photo-scroll{padding:10px}.size-box{padding:14px}.selected-size-table{font-size:12px}
 }
+
+/* Photo viewer fits the screen; tap or use the zoom control for a closer view. */
+#photo-viewer{inset:0;margin:auto;overflow:hidden}
+.photo-controls{position:relative;min-height:72px}
+.photo-scroll{height:calc(100% - 72px);overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.photo-frame{cursor:zoom-in}.magnified .photo-frame{cursor:zoom-out;width:200%;max-width:none}
+@media(max-width:760px){#photo-viewer{width:100vw;height:100dvh;max-height:100dvh;max-width:100vw}.photo-scroll{padding:8px}.photo-controls{flex-wrap:nowrap;min-height:64px;padding:8px}.photo-scroll{height:calc(100% - 64px)}.photo-controls button{min-height:44px}.magnified .photo-frame{width:220%}}
+
+/* Fourth cloth card: full-height composition and full-size detail view */
+.fabric-grid button[data-photo="fabric4"] .fabric-square{width:100%;overflow:hidden}
+#photo-viewer .photo-frame img{object-fit:contain}
+
+/* Uniform, sharp fabric photo cards: 27 Oct 2026 */
+.fabric-grid {display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px;}
+.fabric-grid > button {min-width:0; width:100%;}
+.fabric-grid .fabric-square {display:block; width:100%; aspect-ratio:1 / 1; overflow:hidden; height:auto;}
+.fabric-grid .fabric-square img {display:block; width:100%; height:100%; object-fit:cover; object-position:center; opacity:1; filter:none; transform:none;}
+@media(max-width:700px){.fabric-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+/* Preserve complete supplied fabric photos in thumbnails. */
+.fabric-grid .fabric-square img {object-fit:contain; background:#fff;}
+
+/* Maison Christenzen: four discreet evenly-sized fabric cards, preserve original photos. */
+.fabric-section .fabric-grid {grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; max-width:980px; margin-inline:auto;}
+.fabric-section .fabric-grid button {width:100%;min-width:0;}
+.fabric-section .fabric-grid .fabric-square, .fabric-section .fabric-grid .fabric-square[data-region="fabric4"] {aspect-ratio:1/1; width:100%;height:auto; overflow:hidden;background:#fff;}
+.fabric-section .fabric-grid .fabric-square img, .fabric-section .fabric-grid button[data-photo="fabric4"] img {width:100%;height:100%;object-fit:contain;object-position:center;filter:none;transform:none;}
+@media(max-width:700px){.fabric-section .fabric-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}}
+
+/* Smaller editorial textile gallery; original photographs untouched. */
+.fabric-section .fabric-grid {max-width:720px !important; width:100%; margin:24px auto 0 !important; display:grid !important; grid-template-columns:repeat(4,minmax(0,1fr)) !important; gap:12px !important;}
+.fabric-section .fabric-grid > button {width:100% !important; min-width:0 !important;}
+.fabric-section .fabric-grid .fabric-square {width:100% !important; aspect-ratio:1/1 !important; height:auto !important;}
+.fabric-section .fabric-grid .fabric-square img {width:100% !important; height:100% !important; object-fit:contain !important; filter:none !important;}
+@media(max-width:700px){.fabric-section .fabric-grid {max-width:420px !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:12px !important;}}
