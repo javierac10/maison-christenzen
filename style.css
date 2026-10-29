@@ -33,7 +33,7 @@
 .header{height:156px;background:var(--brand-night);color:#f4f0e8;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);border-color:#b8bec826}
 .logo-window{position:relative;overflow:hidden;display:block;background:var(--brand-night)}
 .brand.logo-window{grid-column:2;grid-row:1;width:220px;height:132px;flex:none}
-.logo-window img{position:absolute;left:50%;top:50%;width:200%;height:auto;max-width:none;object-fit:initial;transform:translate(-50%,-51%);margin:0}
+.logo-window img{position:absolute;left:50%;top:50%;width:100%;height:auto;max-width:none;object-fit:initial;transform:translate(-50%,-51%);margin:0}
 .desktop-nav{grid-column:1;grid-row:1;gap:24px;font-size:10px}
 .header-actions{grid-column:3;grid-row:1;justify-self:end}
 .languages button{color:#aeb4bd}.languages button[aria-pressed=true]{color:#f4f0e8}
