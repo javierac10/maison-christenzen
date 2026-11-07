@@ -438,14 +438,15 @@ orderForm.addEventListener("submit", async(e) => {
 
   // Mapeo estricto con tipado correcto (Number, Boolean, String)
   const payload = {
-      fullName: document.getElementById('fullName').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      shippingCountry: document.getElementById('shippingCountry').value.trim(),
-      jacketModel: document.getElementById('jacketModel').value.trim(),
-      size: Number(document.getElementById('size').value),
-      quantity: Number(document.getElementById('quantity').value),
-      comments: document.getElementById('comments').value.trim(),
-      privacyConsent: document.getElementById('privacyConsent').checked
+      fullName: document.getElementById('order-fullName').value.trim(),
+      email: document.getElementById('order-email').value.trim(),
+      shippingCountry: document.getElementById('order-country').value.trim(),
+      jacketModel: document.getElementById('order-model-input').value.trim(),
+      size: Number(document.getElementById('order-size').value),
+      quantity: Number(document.getElementById('order-quantity').value),
+      comments: document.getElementById('order-comments').value.trim(),
+      customMeasurements: document.querySelector('input[name="customMeasurements"]:checked')?.value,
+      privacyConsent: document.getElementById('order-consent').checked
   };
 
   try {
