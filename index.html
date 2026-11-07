@@ -23,7 +23,7 @@
       <a href="#story" data-i18n="story">Our Story</a>
     </nav>
     <div class="header-actions">
-      <div class="languages" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><span aria-hidden="true">/</span><button type="button" data-lang="es" aria-pressed="false">ES</button></div>
+      <div class="languages" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><span aria-hidden="true">/</span><button type="button" data-lang="fr" aria-pressed="false">FR</button><span aria-hidden="true">/</span><button type="button" data-lang="es" aria-pressed="false">ES</button></div>
       <button class="menu-button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
     </div>
   </header>
@@ -123,6 +123,193 @@
         </div>
   </dialog>
 <dialog id="photo-viewer" aria-label="Photograph"><div class="photo-controls"><button class="photo-zoom" type="button"></button><button class="photo-close" type="button"></button></div><div class="photo-scroll"><div class="photo-frame"><img alt=""></div></div></dialog>
+<dialog class="order-dialog" id="order-dialog" aria-labelledby="order-title">
+  <button type="button" class="order-close" aria-label="Close">✕</button>
+  <div class="order-dialog-body">
+    <header class="order-head">
+      <p class="eyebrow" data-i18n="orderEyebrow">MAISON CHRISTENZEN / PRIVATE ORDER</p>
+      <h2 id="order-title" data-i18n="orderTitle">Request a private order</h2>
+      <p class="order-sub" data-i18n="orderSub">We will contact you to confirm details, measurements and availability.</p>
+    </header>
+    <form id="order-form" novalidate>
+      <div id="order-fields">
+      <div class="order-field">
+        <label for="order-fullName" data-i18n="fullNameLabel">Full name</label>
+        <input type="text" id="order-fullName" name="fullName" autocomplete="name" placeholder=" " data-i18n-ph="fullNamePh">
+        <span class="order-error" data-error="fullName" hidden></span>
+      </div>
+      <div class="order-field">
+        <label for="order-email" data-i18n="emailLabel">Email address</label>
+        <input type="email" id="order-email" name="email" autocomplete="email" placeholder=" " data-i18n-ph="emailPh">
+        <span class="order-error" data-error="email" hidden></span>
+      </div>
+      <div class="order-field">
+        <label for="order-country" data-i18n="countryLabel">Delivery country</label>
+        <select id="order-country" name="shippingCountry">
+          <option value="" data-i18n="countryPlaceholder">Select country</option>
+          <optgroup label="America" data-group="continentAmerica">
+            <option value="ar">Argentina</option>
+            <option value="bz">Belize</option>
+            <option value="bo">Bolivia</option>
+            <option value="br">Brazil</option>
+            <option value="ca">Canada</option>
+            <option value="cl">Chile</option>
+            <option value="co">Colombia</option>
+            <option value="cr">Costa Rica</option>
+            <option value="cu">Cuba</option>
+            <option value="do">Dominican Republic</option>
+            <option value="ec">Ecuador</option>
+            <option value="sv">El Salvador</option>
+            <option value="gt">Guatemala</option>
+            <option value="ht">Haiti</option>
+            <option value="hn">Honduras</option>
+            <option value="jm">Jamaica</option>
+            <option value="mx">Mexico</option>
+            <option value="ni">Nicaragua</option>
+            <option value="pa">Panama</option>
+            <option value="py">Paraguay</option>
+            <option value="pe">Peru</option>
+            <option value="us">United States</option>
+            <option value="uy">Uruguay</option>
+            <option value="ve">Venezuela</option>
+          </optgroup>
+          <optgroup label="Europe" data-group="continentEurope">
+            <option value="ad">Andorra</option>
+            <option value="at">Austria</option>
+            <option value="be">Belgium</option>
+            <option value="bg">Bulgaria</option>
+            <option value="hr">Croatia</option>
+            <option value="cy">Cyprus</option>
+            <option value="cz">Czech Republic</option>
+            <option value="dk">Denmark</option>
+            <option value="ee">Estonia</option>
+            <option value="fi">Finland</option>
+            <option value="fr">France</option>
+            <option value="de">Germany</option>
+            <option value="gr">Greece</option>
+            <option value="hu">Hungary</option>
+            <option value="is">Iceland</option>
+            <option value="ie">Ireland</option>
+            <option value="it">Italy</option>
+            <option value="lv">Latvia</option>
+            <option value="li">Liechtenstein</option>
+            <option value="lt">Lithuania</option>
+            <option value="lu">Luxembourg</option>
+            <option value="mt">Malta</option>
+            <option value="mc">Monaco</option>
+            <option value="nl">Netherlands</option>
+            <option value="no">Norway</option>
+            <option value="pl">Poland</option>
+            <option value="pt">Portugal</option>
+            <option value="ro">Romania</option>
+            <option value="sm">San Marino</option>
+            <option value="rs">Serbia</option>
+            <option value="sk">Slovakia</option>
+            <option value="si">Slovenia</option>
+            <option value="es">Spain</option>
+            <option value="se">Sweden</option>
+            <option value="ch">Switzerland</option>
+            <option value="ua">Ukraine</option>
+            <option value="gb">United Kingdom</option>
+          </optgroup>
+        </select>
+        <span class="order-error" data-error="shippingCountry" hidden></span>
+      </div>
+      <div class="order-field">
+        <span class="order-label" data-i18n="modelLabel">Jacket model</span>
+        <div class="order-model-value" id="order-model-value">The Midnight Jacket</div>
+        <input type="hidden" id="order-model-input" name="jacketModel">
+      </div>
+      <div class="order-field">
+        <label for="order-size" data-i18n="sizeLabel">EU size 42–56</label>
+        <select id="order-size" name="size">
+          <option value="" data-i18n="sizePlaceholder">Select size</option>
+          <option value="42">EU 42</option>
+          <option value="44">EU 44</option>
+          <option value="46">EU 46</option>
+          <option value="48">EU 48</option>
+          <option value="50">EU 50</option>
+          <option value="52">EU 52</option>
+          <option value="54">EU 54</option>
+          <option value="56">EU 56</option>
+        </select>
+        <span class="order-error" data-error="size" hidden></span>
+      </div>
+      <div class="order-field">
+        <span class="order-label" data-i18n="customLabel">Custom measurements</span>
+        <div class="radio-row">
+          <label class="radio-item">
+            <input type="radio" name="customMeasurements" value="no" checked>
+            <span class="radio-dot" aria-hidden="true"></span>
+            <span data-i18n="no">No</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="customMeasurements" value="yes">
+            <span class="radio-dot" aria-hidden="true"></span>
+            <span data-i18n="yes">Yes</span>
+          </label>
+        </div>
+      </div>
+      <div class="order-field">
+        <label for="order-quantity" data-i18n="quantityLabel">Quantity</label>
+        <select id="order-quantity" name="quantity">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+      <div class="order-field">
+        <label for="order-comments" data-i18n="commentsLabel">Special comments (optional)</label>
+        <textarea id="order-comments" name="comments" rows="4" placeholder=" " data-i18n-ph="commentsPh"></textarea>
+      </div>
+      <div class="order-field">
+        <label class="check-row consent-row" for="order-consent">
+          <input type="checkbox" id="order-consent" name="privacyConsent">
+          <span class="check-box" aria-hidden="true"></span>
+          <span class="check-label"><span data-i18n="consentText">I have read and accept the privacy policy.</span></span>
+        </label>
+        <button type="button" class="consent-open" data-i18n="consentOpen">Read the privacy policy</button>
+        <span class="order-error" data-error="privacyConsent" hidden></span>
+      </div>
+      <div class="order-actions">
+        <button type="button" class="button button-quiet" id="order-cancel" data-i18n="cancel">Cancel</button>
+        <button type="submit" class="button button-primary" id="order-submit" data-i18n="submit" disabled>Send request</button>
+      </div>
+      </div>
+      <p class="order-status" id="order-status" data-i18n="orderReady" hidden>Please complete the highlighted fields.</p>
+      <div id="order-success" hidden></div>
+    </form>
+  </div>
+</dialog>
+<dialog class="privacy-dialog" id="privacy-dialog" aria-labelledby="privacy-title">
+  <button type="button" class="order-close" aria-label="Close">✕</button>
+  <div class="privacy-body">
+    <h2 id="privacy-title" data-i18n="privacyTitle">Privacy policy</h2>
+    <div class="privacy-text" data-i18n-html="privacyText"></div>
+    <div class="privacy-actions">
+      <button type="button" class="button button-quiet" id="privacy-reject" data-i18n="privacyReject">Reject</button>
+      <button type="button" class="button button-primary" id="privacy-accept" data-i18n="privacyAccept">Accept</button>
+    </div>
+  </div>
+</dialog>
 <script src="details.js" defer></script>
+<script src="order-form.js" defer></script>
 </body>
 </html>
