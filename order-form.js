@@ -192,6 +192,7 @@ const orderCountries = [
 const orderDialog = document.getElementById("order-dialog");
 const privacyDialog = document.getElementById("privacy-dialog");
 const orderForm = document.getElementById("order-form");
+const submitBtn = document.getElementById('order-submit')
 let currentOrderProduct = "midnight";
 
 const countrySelect = document.getElementById("order-country");
